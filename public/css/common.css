@@ -1,0 +1,245 @@
+@charset "utf-8";
+
+/****************************
+  global
+ ****************************/
+* {
+    margin: 0;
+    padding: 0;
+}
+#header {
+	text-align: center;
+	white-space: nowrap; 
+}
+#content {
+    text-align: center;
+	padding: 20px;
+    min-height: 600px;
+}
+#footer {
+    text-align: center;
+	height: 40px;
+    text-align: right;
+}
+hr {
+    margin: 10px;
+}
+
+pre {
+    white-space: -moz-pre-wrap; /* Mozilla */
+    white-space: -pre-wrap;     /* Opera 4-6 */
+    white-space: -o-pre-wrap;   /* Opera 7 */
+    white-space: pre-wrap;      /* CSS3 */
+    word-wrap: break-word;      /* IE 5.5+ */
+}
+
+/****************************
+  in header
+ ****************************/
+div#title {
+	margin: 0 0 10px; /* 上、左右、下 */
+	padding: 20px 15px; /* 上下、左右 */
+    background-color: #3AC1C4;
+	font-size: 130%;
+	font-weight: bold;
+	color: #FFFFFF;
+	line-height: 100%;
+	border-style: solid;
+    border-width: 2px;
+    border-color: #000000;
+}
+div#title a:link {
+	color: #FFFFFF;
+}
+div#title a:visited {
+    color: #FFFFFF;
+}
+div#title a:hover {
+    color: #FFFFFF;
+}
+div#title a:active {
+    color: #FFFFFF;
+}
+#kensaku {
+    margin-left: 15px;
+}
+
+/****************************
+  in content
+ ****************************/
+div#topImg {
+	margin-top: 200px;
+    margin-bottom: 200px;
+}
+p#narabekae {
+	margin-left: 550px;
+    margin-bottom: 10px;
+}	
+
+/****************************
+  in content
+   > mailList
+ ****************************/
+p#mailListMessage {
+    margin-left: auto;
+    margin-right: auto; 
+    width: 700px;
+    color: red;
+    font-size: 10px;
+}
+ol#mailList {
+    margin-left: auto;
+    margin-right: auto; 
+    width: 700px;
+}
+ol#mailList li {
+    list-style-type: none;
+}
+ol#mailList>li:before {
+	counter-increment: olcount;
+	content: counter(olcount, decimal) "";
+	list-style-type: none;
+}
+
+/****************************
+  in content
+   > mailList
+    > mail
+ ****************************/
+div.mail {
+    text-align: left;
+    width: 700px;
+    margin-bottom: 10px;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #FFFFFF;
+}
+div.mailHead {
+	background-color: #D0EBF4;  /* 水色 */
+}
+div.subject {
+    background: #D0EBF4 url(../img/back_grade_blue.gif) repeat-x top;
+	width: 700px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+    font-size: 15px;
+    line-height: 100%;
+}
+div.subject a {
+	margin-left: 15px;
+}
+div.sender {
+	width: 399px;
+    background-color: #D0EBF4;  /* 水色 */
+	float: left;
+}
+div.sender p {
+    margin-left: 15px;
+    margin-bottom: 2px;
+    white-space: -moz-pre-wrap; /* Mozilla */
+    white-space: -pre-wrap;     /* Opera 4-6 */
+    white-space: -o-pre-wrap;   /* Opera 7 */
+    white-space: pre-wrap;      /* CSS3 */
+    word-wrap: break-word;      /* IE 5.5+ */    
+}
+div.date {
+	width: 299px;# position: absolute;  
+	text-align: right;
+    background-color: #D0EBF4;  /* 水色 */
+	float: left;
+}
+div.date p {
+	margin-right: 15px;
+	margin-bottom: 2px;
+}
+div.mail hr {
+    clear: both;
+	size: 1px;
+    color: #C3C2C0;
+    margin: 0;
+}
+div.mailContent {
+	background-color: #FFFFFF;
+	cursor: pointer;
+}
+div.mailContent pre {
+	margin: 15px;
+}
+span.hit {
+    font-weight: bold;
+    background-color: #FFFF00;
+}
+
+/****************************
+  in content
+   > mailList
+    > mailContentAll
+ ****************************/
+div.mailContentAll {
+	display: none;
+}
+div.inline {
+	padding: 10px;
+	background: #ECF9F9;
+}
+
+/****************************
+  in content
+   > pageNav
+ ****************************/
+div.pageNav.upper {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+div.pageNav.lower {
+    text-align: center;
+    margin-top: 15px;
+}
+div.pageNav ul {
+    margin: 0 auto;
+    zoom: 100%;
+}
+div.pageNav ul li {
+    display:inline;
+    margin-right: 2px;
+    margin-left: 2px;
+}
+div.pageNav ul li.navNumber a ,
+div.pageNav ul li.current span {
+    background-color: #E0FBFF;
+    padding: 2px 2px;
+    text-decoration: none;
+    border:solid 1px #DEDEDE;
+}
+div.pageNav ul li.navNumber a:hover {
+    background-color: #40DEEA;
+    border:solid 1px #DEDEDE;
+}
+div.pageNav ul li.current span {
+    background-color: #D0EBF4;
+    border:solid 1px #B0B0B0;
+    font-weight: bold;
+}
+
+/****************************
+  in error page
+ ****************************/
+div#errorContent h2 {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+div#errorContent p {
+    margin: 15px;
+}
+div#errorContent pre {
+	margin: 20px;
+}
+
+/****************************
+  in footer
+ ****************************/
+#footer p {
+	margin: 15px;
+}
+

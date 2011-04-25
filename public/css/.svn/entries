@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   name=""
+   repos="http://www.1-ideal.info/repos/ml-search"
+   revision="124"
+   last-author="charles"
+   uuid="ab988056-71e4-4a77-8661-474b51e038ce"
+   url="http://www.1-ideal.info/repos/ml-search/trunk/src/webapp/css"
+   committed-rev="121"
+   kind="dir"
+   committed-date="2011-02-09T05:02:52.512018Z"/>
+<entry
+   name="colorbox.css"
+   checksum="636ce233fc5f76b400a9f976dd9cc8bd"
+   last-author="charles"
+   text-time="2011-02-01T07:47:17.000000Z"
+   committed-rev="118"
+   kind="file"
+   committed-date="2011-02-01T07:47:17.613690Z"/>
+<entry
+   name="common.css"
+   revision="126"
+   checksum="af5a7dab1c9e4cbe671e1fcefe11ced5"
+   last-author="charles"
+   text-time="2011-02-23T08:49:20.000000Z"
+   committed-rev="126"
+   kind="file"
+   committed-date="2011-02-23T09:07:48.713000Z"/>
+</wc-entries>

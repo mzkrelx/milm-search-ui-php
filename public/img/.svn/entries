@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="http://www.1-ideal.info/repos/ml-search"
+   name=""
+   revision="124"
+   last-author="charles"
+   url="http://www.1-ideal.info/repos/ml-search/trunk/src/webapp/img"
+   uuid="ab988056-71e4-4a77-8661-474b51e038ce"
+   committed-rev="118"
+   kind="dir"
+   committed-date="2011-02-01T07:47:17.613690Z"/>
+<entry
+   name="back_grade_blue.gif"
+   checksum="eba21f4353f21c1ecb004f88d73f6e08"
+   last-author="charles"
+   text-time="2011-01-27T08:28:23.000000Z"
+   committed-rev="114"
+   kind="file"
+   committed-date="2011-01-27T08:28:23.349556Z"
+   prop-time="2011-02-09T08:48:37.000000Z"/>
+<entry
+   name="back_grade_green.gif"
+   checksum="4840610a24e7c71686414445e5993cb4"
+   last-author="charles"
+   text-time="2011-01-21T16:38:41.000000Z"
+   committed-rev="102"
+   kind="file"
+   committed-date="2011-01-21T16:38:41.553624Z"
+   prop-time="2011-02-09T08:48:36.000000Z"/>
+<entry
+   name="border1.png"
+   checksum="c079c3fa6240ec0a06f25d0d687cefc1"
+   last-author="charles"
+   text-time="2011-02-01T07:47:17.000000Z"
+   committed-rev="118"
+   kind="file"
+   committed-date="2011-02-01T07:47:17.613690Z"
+   prop-time="2011-02-09T08:48:36.000000Z"/>
+<entry
+   name="border2.png"
+   checksum="680e4a6bafb6ab0b724c41d22e0a22e3"
+   last-author="charles"
+   text-time="2011-02-01T07:47:17.000000Z"
+   committed-rev="118"
+   kind="file"
+   committed-date="2011-02-01T07:47:17.613690Z"
+   prop-time="2011-02-09T08:48:36.000000Z"/>
+<entry
+   name="internet_explorer"
+   kind="dir"/>
+<entry
+   name="loading.gif"
+   checksum="b5e24db8f84eb4eac09c88f804f36df2"
+   last-author="charles"
+   text-time="2011-02-01T07:47:17.000000Z"
+   committed-rev="118"
+   kind="file"
+   committed-date="2011-02-01T07:47:17.613690Z"
+   prop-time="2011-02-09T08:48:36.000000Z"/>
+<entry
+   name="top.gif"
+   checksum="cb254e47c6e6c7e39b4f8de2141ffe1e"
+   last-author="charles"
+   text-time="2011-01-21T16:38:41.000000Z"
+   committed-rev="102"
+   kind="file"
+   committed-date="2011-01-21T16:38:41.553624Z"
+   prop-time="2011-02-09T08:48:36.000000Z"/>
+</wc-entries>
