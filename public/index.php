@@ -2,8 +2,7 @@
 
 <?php
     require_once '../application/SystemUtil.php';
-    $systemUtil = new SystemUtil();
-    $systemUtil::init();
+    init();
     $view = new Zend_View();
     $http = new Zend_Controller_Request_Http();
     $basePath = $http->getBasePath();
@@ -17,7 +16,7 @@
     $isError = false;
     if ($query !== "") {
         $enQuery = urlencode($query);
-        $url = SEARCH_SEAVER_PATH . "?q={$enQuery}&field={$field}&sortValue={$sortValue}&pp={$pp}&page={$page}";
+        $url = SERVER_URL . "?q={$enQuery}&field={$field}&sortValue={$sortValue}&pp={$pp}&page={$page}";
         try {
             $mails = new Zend_Feed_Atom($url);
             $totalMailCount = $mails->getDOM()->getAttribute('total');
@@ -36,7 +35,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="content-script-type" content="text/jascript" />
     <meta http-equiv="content-style-type" content="text/css" />
-    <title>milm-search</title><?php // TODO タイトル修正 ?>
+    <title><?php echo SYSTEM_TITLE ?></title>
     <link rel="stylesheet" type="text/css" href="<?php echo $basePath ?>/css/common.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo $basePath ?>/css/colorbox.css" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
@@ -49,12 +48,12 @@
 <!-- ヘッダーここから -->
 <div id="header">
     <div id="title">
-        <a href="<?php echo $basePath ?>/">milm-search</a><?php // TODO タイトル修正 ?>
+        <a href="<?php echo $basePath ?>/"><?php echo SYSTEM_TITLE ?></a>
     </div>
 
     <form id="kensaku" action="<?php echo $basePath ?>/index.php" method="get">
         <p>
-            <input type="text" name="query" id ="query" value="<?php echo $query ?>" />
+            <input type="text" name="query" id ="query" value="<?php echo $view->escape($query) ?>" />
             <input type="submit" value="検索" />
             <input type="radio" name="field" value="text" <?php echo ('text' === $field) ? "checked=\"checked\"" : "" ?>/>メール本文
             <input type="radio" name="field" value="subject" <?php echo ('subject' === $field) ? "checked=\"checked\"" : "" ?>/>件名
