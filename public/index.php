@@ -140,7 +140,7 @@
                         <p><?php echo $view->escape($mail->author->name()) ?> &lt;<?php echo $view->escape($mail->author->email()) ?>&gt;</p>
                     </div>
                     <div class="date">
-                        <p><?php echo $mail->updated() ?></p>
+                        <p><?php echo new Zend_Date($mail->updated(), 'Y\-m\-d\TH\:i\:s\.SP', 'ja_JP') ?></p>
                     </div>
                     <hr />
                 </div>
