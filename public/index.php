@@ -14,7 +14,7 @@
     $mails = null;
     $totalMailCount = 0;
     $isError = false;
-    if ($query !== "") {
+    if ($query !== "") :
         $enQuery = urlencode($query);
         $url = SERVER_URL . "?q={$enQuery}&field={$field}&sortValue={$sortValue}&pp={$pp}&page={$page}";
         try {
@@ -25,9 +25,15 @@
             d($e->getMessage());    // TODO 後で消す
             $isError = true;
         }
-    }
-
+        require_once '../application/Paginator.php';
+        $paginator = new Paginator($page, $pp, 10, $totalMailCount);
+    endif;
     $startCount = 0; // olの開始番号に使用する
+    if (isset($pagenator)) :
+        // onloadで1増やすので1減らしておく
+        $startCount = $paginator->getCurrentItemCountStart() - 1;
+    endif;
+
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
@@ -43,7 +49,7 @@
     <script type="text/javascript" src="<?php echo $basePath ?>/js/common.js"></script>
 </head>
 
-<body<?php echo ($mails != null) ? " onload=\"resetCounter(" + $startCount + ")\"" : "" ?>>
+<body<?php echo ($mails != null) ? " onload=\"resetCounter({$startCount})\"" : '' ?>>
 
 <!-- ヘッダーここから -->
 <div id="header">
@@ -82,8 +88,6 @@
     <!-- メールリスト表示ここから -->
 <?php
       $searchPath = $view->escape("{$basePath}&sortValue={$sortValue}&query={$query}&field={$field}&pp={$pp}&page=");
-      require_once '../application/Paginator.php';
-      $paginator = new Paginator($page, $pp, 10, $totalMailCount);
 ?>
 <?php     if ($query !== '') : ?>
     <p>「<?php echo $view->escape($query) ?>」 の検索結果 <?php echo $totalMailCount ?> 件中<?php echo $paginator->getCurrentItemCountStart() ?> 件から<?php echo $paginator->getCurrentItemCountEnd() ?> 件表示</p>
