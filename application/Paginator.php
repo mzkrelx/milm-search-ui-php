@@ -147,7 +147,7 @@ class Paginator {
      * @return int totalPageCount
      */
     public function getTotalPageCount() {
-        $division = $this->getTotalItemCount() / $this->getItemCountPerPage();
+        $division = (int) ($this->getTotalItemCount() / $this->getItemCountPerPage());
         $remainder = $this->getTotalItemCount() % $this->getItemCountPerPage();
         $add = $remainder > 0 ? 1 : 0;
         return $division + $add;

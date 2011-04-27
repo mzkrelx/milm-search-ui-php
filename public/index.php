@@ -19,7 +19,7 @@
         $url = SERVER_URL . "?q={$enQuery}&field={$field}&sortValue={$sortValue}&pp={$pp}&page={$page}";
         try {
             $mails = new Zend_Feed_Atom($url);
-            $totalMailCount = $mails->getDOM()->getAttribute('total');
+            $totalMailCount = $mails->__get('totalResults')->__toString();
         } catch (Exception $e) {
             // TODO ログはく
             d($e->getMessage());    // TODO 後で消す
