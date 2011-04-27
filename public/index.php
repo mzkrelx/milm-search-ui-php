@@ -41,7 +41,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="content-script-type" content="text/jascript" />
     <meta http-equiv="content-style-type" content="text/css" />
-    <title><?php echo SYSTEM_TITLE ?></title>
+    <title><?php echo $view->escape(SYSTEM_TITLE) ?></title>
     <link rel="stylesheet" type="text/css" href="<?php echo $basePath ?>/css/common.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo $basePath ?>/css/colorbox.css" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
@@ -54,7 +54,7 @@
 <!-- ヘッダーここから -->
 <div id="header">
     <div id="title">
-        <a href="<?php echo $basePath ?>/"><?php echo SYSTEM_TITLE ?></a>
+        <a href="<?php echo $basePath ?>/"><?php echo $view->escape(SYSTEM_TITLE) ?></a>
     </div>
 
     <form id="kensaku" action="<?php echo $basePath ?>/index.php" method="get">
