@@ -147,7 +147,7 @@
                     </div>
                     <hr />
                 </div>
-                <div class="mailContent" onclick="loadMailText('<?php echo $view->escape($mail->title()) ?>', <?php echo $mail->id() ?>)">
+                <div class="mailContent">
                     <pre><?php echo $view->escape($mail->summary()) // TODO ハイライト対応 ?></pre>
                 </div>
             </div>
