@@ -54,7 +54,7 @@
 <!-- ヘッダーここから -->
 <div id="header">
     <div id="title">
-        <a href="<?php echo $basePath ?>/"><?php echo $view->escape(SYSTEM_TITLE) ?></a>
+        <a href="<?php echo $basePath ?>/index.php"><?php echo $view->escape(SYSTEM_TITLE) ?></a>
     </div>
 
     <form id="kensaku" action="<?php echo $basePath ?>/index.php" method="get">
@@ -87,7 +87,7 @@
 <?php else : ?>
     <!-- メールリスト表示ここから -->
 <?php
-      $searchPath = $view->escape("{$basePath}&sortValue={$sortValue}&query={$query}&field={$field}&pp={$pp}&page=");
+      $searchPath = $view->escape("{$basePath}/index.php?sortValue={$sortValue}&query={$query}&field={$field}&pp={$pp}&page=");
 ?>
 <?php     if ($query !== '') : ?>
     <p>「<?php echo $view->escape($query) ?>」 の検索結果 <?php echo $totalMailCount ?> 件中<?php echo $paginator->getCurrentItemCountStart() ?> 件から<?php echo $paginator->getCurrentItemCountEnd() ?> 件表示</p>
@@ -107,7 +107,7 @@
         <ul>
 <?php         if ($paginator->isPrePageExists()) : ?>
             <li>
-                <a href="<?php echo $searchPath + ($paginator->getCurrentPageNum() - 1) ?>">前へ</a>
+                <a href="<?php echo $searchPath . ($paginator->getCurrentPageNum() - 1) ?>">前へ</a>
             </li>
 <?php         endif ?>
 
@@ -118,14 +118,14 @@
             </li>
 <?php             else: ?>
             <li class="navNumber">
-                <a href="<?php echo $searchPath + $pageNum ?>"><?php echo $pageNum ?></a>
+                <a href="<?php echo $searchPath . $pageNum ?>"><?php echo $pageNum ?></a>
             </li>
 <?php             endif ?>
 <?php         endforeach ?>
 
 <?php         if ($paginator->isNextPageExists()) : ?>
             <li>
-                <a href="<?php echo $searchPath + ($paginator->getCurrentPageNum() + 1) ?>">次へ</a>
+                <a href="<?php echo $searchPath . ($paginator->getCurrentPageNum() + 1); ?>">次へ</a>
             </li>
 <?php         endif ?>
         </ul>
@@ -164,7 +164,7 @@
         <ul>
 <?php         if ($paginator->isPrePageExists()) : ?>
             <li>
-                <a href="<?php echo $searchPath + ($paginator->getCurrentPageNum() - 1) ?>">前へ</a>
+                <a href="<?php echo $searchPath . ($paginator->getCurrentPageNum() - 1) ?>">前へ</a>
             </li>
 <?php         endif ?>
 
@@ -175,14 +175,14 @@
             </li>
 <?php             else: ?>
             <li class="navNumber">
-                <a href="<?php echo $searchPath + $pageNum ?>"><?php echo $pageNum ?></a>
+                <a href="<?php echo $searchPath . $pageNum ?>"><?php echo $pageNum ?></a>
             </li>
 <?php             endif ?>
 <?php         endforeach ?>
 
 <?php          if ($paginator->isNextPageExists()) : ?>
             <li>
-                <a href="<?php echo $searchPath + ($paginator->getCurrentPageNum() + 1) ?>">次へ</a>
+                <a href="<?php echo $searchPath . ($paginator->getCurrentPageNum() + 1) ?>">次へ</a>
             </li>
 <?php          endif ?>
         </ul>
