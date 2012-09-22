@@ -1,7 +1,14 @@
 <?php
 return array(
+    'controllers' => array(
+        'invokables' => array(
+            'General\Controller\Index'      => 'General\Controller\IndexController',
+            'MlProposal' => 'General\Controller\MlProposalController',
+        ),
+    ),
     'router' => array(
         'routes' => array(
+
             'home' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
@@ -12,27 +19,31 @@ return array(
                     ),
                 ),
             ),
-            'general' => array(
-                'type'    => 'Literal',
+
+            'ml-proposal' => array(
+                'type'    => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
-                    'route'    => '/general',
+                    'route'    => '/ml-proposal',
+                    'constraints' => array(
+                        'controller' => 'MlProposal',
+                        'action'     => 'attention',
+                    ),
                     'defaults' => array(
-                        '__NAMESPACE__' => 'General\Controller',
-                        'controller'    => 'Index',
-                        'action'        => 'index',
+                        'controller' => 'MlProposal',
+                        'action'     => 'attention',
                     ),
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
-                    'default' => array(
+                    'some-action' => array(
                         'type'    => 'Segment',
                         'options' => array(
-                            'route'    => '/[:controller[/:action]]',
+                            'route'    => '[/:action]',
                             'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
                             ),
                             'defaults' => array(
+                                'action' => 'attention',
                             ),
                         ),
                     ),
@@ -53,11 +64,6 @@ return array(
                 'base_dir' => __DIR__ . '/../language',
                 'pattern'  => '%s.mo',
             ),
-        ),
-    ),
-    'controllers' => array(
-        'invokables' => array(
-            'General\Controller\Index' => 'General\Controller\IndexController'
         ),
     ),
     'view_manager' => array(
