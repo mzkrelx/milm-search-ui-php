@@ -4,6 +4,7 @@ return array(
         'invokables' => array(
             'General\Controller\Index'      => 'General\Controller\IndexController',
             'MlProposal' => 'General\Controller\MlProposalController',
+            'Ml' => 'General\Controller\MlController',
         ),
     ),
     'router' => array(
@@ -49,6 +50,49 @@ return array(
                     ),
                 ),
             ),
+
+            'ml' => array(
+                'type'    => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/ml',
+                    'constraints' => array(
+                        'controller' => 'Ml',
+                        'action'     => 'list',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Ml',
+                        'action'     => 'list',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'show-action' => array(
+                        'type'    => 'Segment',
+                        'options' => array (
+                            'route' => '/show[/:id]' ,
+                            'constraints' => array (
+                                'id' => '[0-9]+' ,
+                            ),
+                            'defaults' => array (
+                                'action' => 'show' ,
+                            ),
+                        ),
+                    ),
+                    'some-action' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '[/:action]',
+                            'constraints' => array(
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                                'action' => 'list',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+
         ),
     ),
     'service_manager' => array(
