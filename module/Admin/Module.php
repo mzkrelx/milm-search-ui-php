@@ -1,5 +1,4 @@
 <?php
-// module/Admin/Module.php
 namespace Admin;
 
 class Module
@@ -20,7 +19,14 @@ class Module
 
     public function getConfig()
     {
-        return include __DIR__ . '/config/module.config.php';
+        $config = include __DIR__ . '/config/module.config.php';
+        $requestUri = $_SERVER["REQUEST_URI"];
+
+        // enabling module layouts by uri
+        if (strpos($requestUri, strtolower(__NAMESPACE__)) !== 1) {
+            unset($config['view_manager']);
+        }
+        return $config;
     }
 
 }

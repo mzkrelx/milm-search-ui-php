@@ -1,15 +1,14 @@
 <?php
-// module/Admin/conﬁg/module.config.php:
- return array (
-     'controllers' => array (
-         'invokables' => array (
-             'Admin\Controller\Index' => 'Admin\Controller\IndexController' ,
-             'Ml' => 'Admin\Controller\MlController' ,
-         ),
-     ),
+return array (
+    'controllers' => array (
+        'invokables' => array (
+            'Admin\Controller\Index' => 'Admin\Controller\IndexController' ,
+            'Ml' => 'Admin\Controller\MlController' ,
+        ),
+    ),
 
-     'router' => array (
-         'routes' => array (
+    'router' => array (
+        'routes' => array (
 
             'admin-ml' => array(
                 'type'    => 'Zend\Mvc\Router\Http\Literal',
@@ -56,7 +55,18 @@
         ),
     ),
 
-    'view_manager' => array (
+    'view_manager' => array(
+        'display_not_found_reason' => true,
+        'display_exceptions'       => true,
+        'doctype'                  => 'HTML5',
+        'not_found_template'       => 'error/404',
+        'exception_template'       => 'error/index',
+        'template_map' => array(
+            'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
+            'admin/index/index'       => __DIR__ . '/../view/admin/index/index.phtml',
+            'error/404'               => __DIR__ . '/../view/error/404.phtml',
+            'error/index'             => __DIR__ . '/../view/error/index.phtml',
+        ),
         'template_path_stack' => array (
             'admin' => __DIR__ . '/../view' ,
         ),
