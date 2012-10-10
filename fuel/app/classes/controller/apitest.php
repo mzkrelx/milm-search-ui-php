@@ -20,7 +20,7 @@ class Controller_Apitest extends Controller_Rest
 	 */
 	public function post_mlproposals()
 	{
-		$this->response(array(), 201);
+		$this->response(array('作成しました'), 201);
 	}
 
 	/**
@@ -39,6 +39,10 @@ class Controller_Apitest extends Controller_Rest
 	public function get_mlproposals($id = null)
 	{
 		if ($id !== null) {
+			if ($id < 0 or $id > 200) {
+				$this->response(array('error' => '無効な値:'.$id), 404);
+				return;
+			}
 			$this->response(array(
 				"id" => $id,
 				"proposerName" => "申請者の名前",
@@ -52,26 +56,27 @@ class Controller_Apitest extends Controller_Rest
 			return;
 		}
 		$this->response(array(
-			'ml-proposals' =>
-			array(
-				"id" => 1,
-				"proposerName" => "申請者の名前",
-				"proposerEmail" => "申請者のメールアドレス",
-				"mlTitle" => "MLタイトル(ML名)",
-				"status" => "new",
-				"archiveType" => "メールアーカイブの種類(ex. mailman)",
-				"archiveUrl" => "メールアーカイブの基底URL",
-				"comment" => "コメント(MLの説明など)"
-			),
-			array(
-				"id" => 2,
-				"proposerName" => "申請者の名前",
-				"proposerEmail" => "申請者のメールアドレス",
-				"mlTitle" => "MLタイトル(ML名)",
-				"status" => "new",
-				"archiveType" => "メールアーカイブの種類(ex. mailman)",
-				"archiveUrl" => "メールアーカイブの基底URL",
-				"comment" => "コメント(MLの説明など)"
+			'ml-proposals' => array(
+				array(
+					"id" => 1,
+					"proposerName" => "申請者の名前",
+					"proposerEmail" => "申請者のメールアドレス",
+					"mlTitle" => "MLタイトル(ML名)",
+					"status" => "new",
+					"archiveType" => "メールアーカイブの種類(ex. mailman)",
+					"archiveUrl" => "メールアーカイブの基底URL",
+					"comment" => "コメント(MLの説明など)"
+				),
+				array(
+					"id" => 2,
+					"proposerName" => "申請者の名前",
+					"proposerEmail" => "申請者のメールアドレス",
+					"mlTitle" => "MLタイトル(ML名)",
+					"status" => "new",
+					"archiveType" => "メールアーカイブの種類(ex. mailman)",
+					"archiveUrl" => "メールアーカイブの基底URL",
+					"comment" => "コメント(MLの説明など)"
+				),
 			),
 		), 200);
 	}
@@ -84,7 +89,7 @@ class Controller_Apitest extends Controller_Rest
 	public function put_mlproposals($id = null)
 	{
 		if ($id === null) {
-			$this->response(array(), 404);
+			$this->response(array('error' => '無効な値:'.$id), 404);
 			return;
 		}
 		$this->response(array(), 200);
@@ -98,7 +103,7 @@ class Controller_Apitest extends Controller_Rest
 	public function delete_mlproposals($id = null)
 	{
 		if ($id === null) {
-			$this->response(array(), 404);
+			$this->response(array('error' => '無効な値:'.$id), 404);
 			return;
 		}
 		$this->response(array(), 200);
@@ -119,6 +124,10 @@ class Controller_Apitest extends Controller_Rest
 	public function get_mls($id = null)
 	{
 		if ($id !== null) {
+			if ($id < 0 or $id > 100) {
+				$this->response(array('error' => '無効な値:'.$id), 404);
+				return;
+			}
 			$this->response(array(
 				"id" => $id,
 				"proposerName" => "申請者の名前",
@@ -132,26 +141,27 @@ class Controller_Apitest extends Controller_Rest
 			return;
 		}
 		$this->response(array(
-			'ml-proposals' =>
-			array(
-				"id" => 1,
-				"proposerName" => "申請者の名前",
-				"proposerEmail" => "申請者のメールアドレス",
-				"mlTitle" => "MLタイトル(ML名)",
-				"status" => "new",
-				"archiveType" => "メールアーカイブの種類(ex. mailman)",
-				"archiveUrl" => "メールアーカイブの基底URL",
-				"comment" => "コメント(MLの説明など)"
-			),
-			array(
-				"id" => 2,
-				"proposerName" => "申請者の名前",
-				"proposerEmail" => "申請者のメールアドレス",
-				"mlTitle" => "MLタイトル(ML名)",
-				"status" => "new",
-				"archiveType" => "メールアーカイブの種類(ex. mailman)",
-				"archiveUrl" => "メールアーカイブの基底URL",
-				"comment" => "コメント(MLの説明など)"
+			'mls' => array(
+				array(
+					"id" => 1,
+					"proposerName" => "申請者の名前",
+					"proposerEmail" => "申請者のメールアドレス",
+					"mlTitle" => "MLタイトル(ML名)",
+					"status" => "new",
+					"archiveType" => "メールアーカイブの種類(ex. mailman)",
+					"archiveUrl" => "メールアーカイブの基底URL",
+					"comment" => "コメント(MLの説明など)"
+				),
+				array(
+					"id" => 2,
+					"proposerName" => "申請者の名前",
+					"proposerEmail" => "申請者のメールアドレス",
+					"mlTitle" => "MLタイトル(ML名)",
+					"status" => "new",
+					"archiveType" => "メールアーカイブの種類(ex. mailman)",
+					"archiveUrl" => "メールアーカイブの基底URL",
+					"comment" => "コメント(MLの説明など)"
+				),
 			),
 		), 200);
 	}
