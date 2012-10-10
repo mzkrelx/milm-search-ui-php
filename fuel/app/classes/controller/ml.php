@@ -1,4 +1,6 @@
 <?php
+use Model\Ml;
+
 use Fuel\Core\HttpNotFoundException;
 
 class Controller_Ml extends Controller_Template
@@ -16,7 +18,10 @@ class Controller_Ml extends Controller_Template
 	public function action_list()
 	{
 		$this->template->set_global('title', 'ML一覧 : Milm Search');
-		$this->template->content = View::forge('ml/list');
+
+		$mls = Model_Ml::find_list(array());
+
+		$this->template->content = View::forge('ml/list', array('mls' => $mls['mls']));
 	}
 
 	public function action_show($id = null)
@@ -27,10 +32,9 @@ class Controller_Ml extends Controller_Template
 
 		$this->template->set_global('title', 'ML詳細 : Milm Search');
 
-		$data = array(
-			'id' => $id
-		);
-		$this->template->content = View::forge('ml/show', $data);
+		$ml = Model_Ml::find_by_id($id);
+
+		$this->template->content = View::forge('ml/show', array('ml' => $ml));
 	}
 
 	public function after($response)
