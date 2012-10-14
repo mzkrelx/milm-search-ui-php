@@ -1,5 +1,25 @@
 <?php
 
+/**
+ * Ensure vendor is on include_path.
+ */
+set_include_path(implode(PATH_SEPARATOR, array(
+realpath(APPPATH.'/vendor/'),
+get_include_path(),
+)));
+
+/**
+ * Debug function.
+ *
+ * @param  mixed  $var   displaying
+ * @param  string $label label also displaying
+ * @return void
+*/
+require_once 'Zend/Debug.php';
+function d($var, $label = null) {
+    Zend_Debug::dump($var, $label);
+}
+
 // Load in the Autoloader
 require COREPATH.'classes'.DIRECTORY_SEPARATOR.'autoloader.php';
 class_alias('Fuel\\Core\\Autoloader', 'Autoloader');

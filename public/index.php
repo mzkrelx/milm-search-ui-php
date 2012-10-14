@@ -25,26 +25,6 @@ define('PKGPATH', realpath(__DIR__.'/../fuel/packages/').DIRECTORY_SEPARATOR);
  */
 define('COREPATH', realpath(__DIR__.'/../fuel/core/').DIRECTORY_SEPARATOR);
 
-/**
- * Ensure vendor is on include_path.
- */
-set_include_path(implode(PATH_SEPARATOR, array(
-    realpath(APPPATH.'/vendor/'),
-    get_include_path(),
-)));
-
-/**
- * Debug function.
- *
- * @param  mixed  $var   displaying
- * @param  string $label label also displaying
- * @return void
- */
-require_once 'Zend/Debug.php';
-function d($var, $label = null) {
-    Zend_Debug::dump($var, $label);
-}
-
 // Get the start time and memory for use later
 defined('FUEL_START_TIME') or define('FUEL_START_TIME', microtime(true));
 defined('FUEL_START_MEM') or define('FUEL_START_MEM', memory_get_usage());

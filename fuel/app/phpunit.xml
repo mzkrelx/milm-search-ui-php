@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit colors="false" stopOnFailure="false"
+    bootstrap="../app/bootstrap_phpunit.php">
+    <php>
+        <server name="doc_root" value="../../" />
+        <server name="app_path" value="fuel/app" />
+        <server name="core_path" value="fuel/core" />
+        <server name="package_path" value="fuel/packages" />
+    </php>
+    <testsuites>
+        <testsuite name="core">
+            <directory suffix=".php">../core/tests</directory>
+        </testsuite>
+        <testsuite name="packages">
+            <directory suffix=".php">../packages/*/tests</directory>
+        </testsuite>
+        <testsuite name="app">
+            <directory suffix=".php">../app/tests</directory>
+        </testsuite>
+    </testsuites>
+    
+    <filter>
+        <!-- 解析対象に含めるもの -->
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">../app/classes</directory>
+            
+            <!-- 含めないもの -->
+            <exclude>
+                <directory suffix=".php">../app/classes/controller
+                </directory>
+                <directory suffix=".php">../app/classes/view
+                </directory>
+            </exclude>
+            
+        </whitelist>
+    </filter>
+    
+    <logging>
+        <log charset="UTF-8" highlight="true" 
+             highlowerbound="70" lowupperbound="35" 
+             target="../../report" type="coverage-html" yui="true">
+        </log>
+        <log type="testdox-html" target="../../report/testdox.html"/>
+    </logging>    
+</phpunit>
