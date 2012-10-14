@@ -1,5 +1,7 @@
 <?php
-class Model_Unicode
+namespace Milm;
+
+class Unicode
 {
 	/**
 	 * UTF-8文字列をUnicodeエスケープする。ただし英数字と記号はエスケープしない。
@@ -8,7 +10,7 @@ class Model_Unicode
 	 * @return string
 	 */
 	public static function encode($str) {
-		return preg_replace_callback("/((?:[^\x09\x0A\x0D\x20-\x7E]{3})+)/", "encode_callback", $str);
+		return preg_replace_callback("/((?:[^\x09\x0A\x0D\x20-\x7E]{3})+)/", "\Milm\encode_callback", $str);
 	}
 
 	/**
@@ -18,7 +20,7 @@ class Model_Unicode
 	 * @return string
 	 */
 	public static function decode($str) {
-		return preg_replace_callback("/\\\\u([0-9a-zA-Z]{4})/", "decode_callback", $str);
+		return preg_replace_callback("/\\\\u([0-9a-zA-Z]{4})/", "\Milm\decode_callback", $str);
 	}
 
 }
@@ -36,4 +38,5 @@ function decode_callback($matches) {
 	$char = mb_convert_encoding(pack("H*", $matches[1]), "UTF-8", "UTF-16");
 	return $char;
 }
+
 

@@ -39,9 +39,7 @@ class Controller_Ml_Proposal extends Controller_Template
 	{
 		$response = parent::after($response);
 
-		require_once 'Zend/Controller/Request/Http.php';
-		$http = new Zend_Controller_Request_Http();
-		$this->template->set_global('basePath', $http->getBasePath());
+		$this->template->set_global('basePath', Config::get('base_url'));
 
 		return $response;
 	}

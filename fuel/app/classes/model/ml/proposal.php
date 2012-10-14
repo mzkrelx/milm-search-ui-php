@@ -1,5 +1,5 @@
 <?php
-use Model\Http\Client;
+use Milm\Http_Client;
 
 use Fuel\Core\HttpServerErrorException;
 
@@ -10,12 +10,17 @@ class Model_Ml_Proposal
 {
 	public static function find_list($cond)
 	{
-		return Model_Http_Client::get_array(Config::get('_api_root_url').'/mlproposals');
+		return Http_Client::get_array(
+			Config::get('_api_root_url').'/'.
+			Config::get('_ml_proposals')
+		);
 	}
 
 	public static function find_by_id($id)
 	{
-		return Model_Http_Client::get_array(Config::get('_api_root_url').'/mlproposals/'.$id);
+		return Http_Client::get_array(
+			Config::get('_api_root_url').'/'.
+			Config::get('_ml_proposals').'/'.$id);
 	}
 
 }

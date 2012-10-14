@@ -1,6 +1,6 @@
 <?php
 /**
- * The development api settings.
+ * The test api settings.
  */
 
 return array(
