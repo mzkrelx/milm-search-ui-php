@@ -1,0 +1,1 @@
+<a href="<?php echo $basePath . 'ml/proposal' ?>">登録</a>
