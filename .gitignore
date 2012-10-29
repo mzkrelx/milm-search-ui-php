@@ -3,4 +3,5 @@
 /.settings/
 /*.swp
 /report
+*.DS_Store
 
