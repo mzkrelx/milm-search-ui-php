@@ -39,12 +39,16 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 	 */
 	public function action_list()
 	{
-		$this->template->set_global('title', 'ML登録申請一覧 : Milm Search Admin');
+		$status = Model_Ml_Proposal::STATUS_NEW;	// default
+		if (isset($_GET['status'])) {
+			$status = $_GET['status'];
+		}
+		// TODO status のバリデーション
 
-		$proposals = Model_Ml_Proposal::find_list(array());
-
+		$proposals = Model_Ml_Proposal::find_list(array());	// TODO 引数に取得条件渡す
+		$this->template->set_global('nav_status', $status);
 		$this->template->content = View::forge(
-			'admin/ml/proposal/list',
+			'admin/ml/proposal/list_'.$status,
 			array('proposals' => $proposals['ml-proposals'])
 		);
 	}
@@ -61,26 +65,133 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 		if ($id === null) {
 			throw new HttpNotFoundException();
 		}
-
-		$this->template->set_global('title', 'ML登録申請詳細 : Milm Search Admin');
-
 		$proposal = Model_Ml_Proposal::find_by_id($id);
 
+		// TODO status によってビュー切り替え。今だけサンプルでid指定
+		if ($id < 10) {
+			$this->template->set_global('nav_status', Model_Ml_Proposal::STATUS_NEW);
+			$this->template->content = View::forge(
+				'admin/ml/proposal/show_new',
+				array('proposal' => $proposal)
+			);
+			return;
+		}
+
+		if ($id < 20) {
+			$this->template->set_global('nav_status', Model_Ml_Proposal::STATUS_ACCEPTED);
+			$this->template->content = View::forge(
+				'admin/ml/proposal/show_accepted',
+				array('proposal' => $proposal)
+			);
+			return;
+		}
+
+		if ($id < 30) {
+			$this->template->set_global('nav_status', Model_Ml_Proposal::STATUS_REJECTED);
+			$this->template->content = View::forge(
+				'admin/ml/proposal/show_rejected',
+				array('proposal' => $proposal)
+			);
+			return;
+		}
+
+		$this->template->set_global('nav_status', Model_Ml_Proposal::STATUS_NEW);
 		$this->template->content = View::forge(
-			'admin/ml/proposal/show',
+			'admin/ml/proposal/show_new',
+			array('proposal' => $proposal)
+		);
+
+	}
+
+	/**
+	 *
+	 * @todo GET は編集画面、POSTは変更処理
+	 * @return void
+	 */
+	public function action_edit($id = null)
+	{
+		if ($id === null) {
+			throw new HttpNotFoundException();
+		}
+		$proposal = Model_Ml_Proposal::find_by_id($id);
+
+		$this->template->set_global('nav_status', '');	//TODO $proposalのステータスによって変える
+		$this->template->content = View::forge(
+			'admin/ml/proposal/edit',
 			array('proposal' => $proposal)
 		);
 	}
 
 	/**
 	 *
-	 * @todo
 	 * @return void
 	 */
-	public function action_edit()
+	public function action_accept_confirm($id = null)
 	{
-		$this->template->set_global('title', 'ML登録申請詳細 : Milm Search Admin');
-		$this->template->content = View::forge('ml/show');
+		if ($id === null) {
+			throw new HttpNotFoundException();
+		}
+		$proposal = Model_Ml_Proposal::find_by_id($id);
+
+		$this->template->set_global('nav_status', Model_Ml_Proposal::STATUS_NEW);
+		$this->template->content = View::forge(
+			'admin/ml/proposal/accept_confirm',
+			array('proposal' => $proposal)
+		);
+	}
+
+	/**
+	 *
+	 * @return void
+	 */
+	public function action_accept($id = null)
+	{
+		if ($id === null) {
+			throw new HttpNotFoundException();
+		}
+		$proposal = Model_Ml_Proposal::find_by_id($id);
+
+		$this->template->set_global('nav_status', Model_Ml_Proposal::STATUS_NEW);
+		$this->template->content = View::forge(
+			'admin/ml/proposal/accept_complete',
+			array('proposal' => $proposal)
+		);
+	}
+
+	/**
+	 *
+	 * @return void
+	 */
+	public function action_reject_confirm($id = null)
+	{
+		if ($id === null) {
+			throw new HttpNotFoundException();
+		}
+		$proposal = Model_Ml_Proposal::find_by_id($id);
+
+		$this->template->set_global('nav_status', Model_Ml_Proposal::STATUS_NEW);
+		$this->template->content = View::forge(
+			'admin/ml/proposal/reject_confirm',
+			array('proposal' => $proposal)
+		);
+	}
+
+	/**
+	 *
+	 * @return void
+	 */
+	public function action_reject($id = null)
+	{
+		if ($id === null) {
+			throw new HttpNotFoundException();
+		}
+		$proposal = Model_Ml_Proposal::find_by_id($id);
+
+		$this->template->set_global('nav_status', Model_Ml_Proposal::STATUS_NEW);
+		$this->template->content = View::forge(
+			'admin/ml/proposal/reject_complete',
+			array('proposal' => $proposal)
+		);
 	}
 
 	/**
@@ -91,7 +202,7 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 	{
 		$response = parent::after($response);
 
-		$this->template->set_global('basePath', Config::get('base_url'));
+		$this->template->set_global('base_url', Config::get('base_url'));
 
 		return $response;
 	}

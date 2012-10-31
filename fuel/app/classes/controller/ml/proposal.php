@@ -39,7 +39,7 @@ class Controller_Ml_Proposal extends Controller_Template
 	{
 		$response = parent::after($response);
 
-		$this->template->set_global('basePath', Config::get('base_url'));
+		$this->template->set_global('base_url', Config::get('base_url'));
 
 		return $response;
 	}

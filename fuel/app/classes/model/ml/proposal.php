@@ -8,6 +8,10 @@ use Fuel\Core\HttpServerErrorException;
  */
 class Model_Ml_Proposal
 {
+	const STATUS_NEW = 'new';
+	const STATUS_ACCEPTED = 'accepted';
+	const STATUS_REJECTED = 'rejected';
+
 	public static function find_list($cond)
 	{
 		return Http_Client::get_array(
