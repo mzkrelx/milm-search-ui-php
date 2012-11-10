@@ -31,7 +31,7 @@ class Test_Model_Ml_Proposal extends Fuel\Core\TestCase
 	public function find_list()
 	{
 		$actual = Model_Ml_Proposal::find_list(null);
-		$this->assertArrayHasKey('ml-proposals', $actual);
+		$this->assertArrayHasKey('mlProposals', $actual);
 	}
 
 	/**
@@ -58,7 +58,7 @@ class Test_Model_Ml_Proposal extends Fuel\Core\TestCase
 	public function find_by_id($id)
 	{
 		$actual = Model_Ml_Proposal::find_by_id($id);
-		$this->assertArrayHasKey('id', $actual);
+		$this->assertArrayHasKey('proposerName', $actual);
 	}
 
 	/**

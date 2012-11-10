@@ -1,12 +1,12 @@
 <section>
 	<h1>登録状況</h1>
-	審査待ち：6件<?php // TODO ?>
-	承認済み：12件<?php // TODO ?>
-	承認却下：2件<?php // TODO ?>
+	審査待ち：<?php echo $new_count ?>件
+	承認済み：<?php echo $accepted_count ?>件
+	承認却下：<?php echo $rejected_count ?>件
 	<nav>
-	<a href="<?php echo $base_url ?>admin/ml/proposal/list?status=new">審査待ちML一覧</a>
-	<a href="<?php echo $base_url ?>admin/ml/proposal/list?status=accepted">承認済みML一覧</a>
-	<a href="<?php echo $base_url ?>admin/ml/proposal/list?status=rejected">却下済みML一覧</a>
+		<a href="<?php echo $base_url ?>admin/ml/proposal/list?status=new">審査待ちML一覧</a>
+		<a href="<?php echo $base_url ?>admin/ml/proposal/list?status=accepted">承認済みML一覧</a>
+		<a href="<?php echo $base_url ?>admin/ml/proposal/list?status=rejected">却下済みML一覧</a>
 	</nav>
 </section>
 <section>
@@ -19,49 +19,16 @@
 		</tr>
 	</thead>
 	<tbody>
+	<?php foreach ($new_ml_proposals as $ml_proposal): ?>
 		<tr>
-			<td>2012/11/01</td>
-			<td><a href="<?php echo $base_url ?>admin/ml/proposal/show/1">MilmSearch開発するよ！MLMilmSearch開発するよ！MLMilmSearch開発するよ！MLMilmSearch開発するよ！MLMilmSearch開発するよ！MLMilmSearch開発するよ！ML</a></td>
-		</tr>
-		<tr>
-			<td>2012/11/01</td>
-			<td><a href="ml/proposal/show_request.html">MilmSearch開発するよ！ML</a></td>
-		</tr>
-		<tr>
-			<td>2012/11/01</td>
-			<td><a href="ml/proposal/show_request.html">MilmSearch開発するよ！ML</a></td>
-		</tr>
-		<tr>
-			<td>2012/11/01</td>
-			<td><a href="ml/proposal/show_request.html">MilmSearch開発するよ！ML</a></td>
-		</tr>
-		<tr>
-			<td>2012/11/01</td>
-			<td><a href="ml/proposal/show_request.html">MilmSearch開発するよ！ML</a></td>
-		</tr>
-		<tr>
-			<td>2012/11/01</td>
-			<td><a href="ml/proposal/show_request.html">MilmSearch開発するよ！ML</a></td>
-		</tr>
-		<tr>
-			<td>2012/11/01</td>
-			<td><a href="ml/proposal/show_request.html">MilmSearch開発するよ！ML</a></td>
-		</tr>
-		<tr>
-			<td>2012/11/01</td>
-			<td><a href="ml/proposal/show_request.html">MilmSearch開発するよ！ML</a></td>
-		</tr>
-		<tr>
-			<td>2012/11/01</td>
-			<td><a href="ml/proposal/show_request.html">MilmSearch開発するよ！ML</a></td>
-		</tr>
-		<tr>
-			<td>2012/11/01</td>
-			<td><a href="ml/proposal/show_request.html">MilmSearch開発するよ！ML</a></td>
-		</tr>
+			<td><?php echo $ml_proposal['createdAt'] ?></td>
+			<td><a href="<?php echo $base_url ?>admin/ml/proposal/show/<?php echo $ml_proposal['id'] ?>"><?php echo $ml_proposal['mlTitle'] ?></a></td>
+	<?php endforeach ?>
 	</tbody>
 	</table>
+<?php if ($is_more): ?>
 	<nav>
-	<a class="btn btn-primary pull-right" href="<?php echo $base_url ?>admin/ml/proposal/list?status=new">審査待ちML一覧</a>
+		<a class="btn btn-primary pull-right" href="<?php echo $base_url ?>admin/ml/proposal/list?status=new">審査待ちML一覧</a>
 	</nav>
+<?php endif ?>
 </section>
