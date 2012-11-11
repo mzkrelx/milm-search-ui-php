@@ -69,14 +69,28 @@ class Controller_Apitest extends Controller_Rest
 		    $count = $_GET[Api::QUERY_COUNT];
 		}
 
+		$startIndex = 1;
+		$page = 1;
+		if (isset($_GET[Api::QUERY_START_PAGE])) {
+			$page = $_GET[Api::QUERY_START_PAGE];
+		}
+		if ($page > 1) {
+			$startIndex = ($page - 1) * $count;
+		}
+
 		$total_results = 24;
 		$ml_proposals = array();
 		$ml_proposals[Api::RESULT_TOTAL_RESULTS]  = $total_results;
-		$ml_proposals[Api::RESULT_START_INDEX]    = 1;
+		$ml_proposals[Api::RESULT_START_INDEX]    = $startIndex;
 		$ml_proposals[Api::RESULT_ITEMS_PER_PAGE] = $count;
 
+		$stop_count = $count;
+		if (($total_results - $startIndex) < $count) {
+			$stop_count = $total_results - $startIndex;
+		}
+
 		$ml_proposals['mlProposals'] = array();
-		for ($i = 1; $i <= $count; $i++) {
+		for ($i = 1; $i <= $stop_count; $i++) {
 			$ml_proposals['mlProposals'][] = array(
 				"id" => $i,
 				"proposerName" => "申請者の名前".$i,

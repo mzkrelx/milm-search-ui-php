@@ -1,4 +1,7 @@
 <?php
+use Milm\Api;
+use Milm\Controller_Helper as Helper;
+
 use Fuel\Core\HttpNotFoundException;
 
 /**
@@ -6,6 +9,8 @@ use Fuel\Core\HttpNotFoundException;
  */
 class Controller_Admin_Ml_Proposal extends Controller_Template
 {
+	const DEFAULT_LIST_COUNT = 20;
+
 	/**
 	 * テンプレートファイルの名前
 	 *
@@ -37,19 +42,47 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 	 *
 	 * @return void
 	 */
-	public function action_list()
+	public function action_list($status = 'new', $page = 1)
 	{
-		$status = Model_Ml_Proposal::STATUS_NEW;	// default
-		if (isset($_GET['status'])) {
-			$status = $_GET['status'];
+		switch ($status) {
+			case Model_Ml_Proposal::STATUS_NEW:
+			case Model_Ml_Proposal::STATUS_ACCEPTED:
+			case Model_Ml_Proposal::STATUS_REJECTED:
+				// OK, do nothing
+				break;
+			default:
+				throw new HttpNotFoundException();
 		}
-		// TODO status のバリデーション
 
-		$proposals = Model_Ml_Proposal::find_list(array());	// TODO 引数に取得条件渡す
+		if (!is_numeric($page)) {
+			throw new HttpNotFoundException();
+		}
+
+		$proposals = Model_Ml_Proposal::find_list(array(
+			Api::QUERY_FILTER_BY    => Model_Ml_Proposal::FILTER_BY_STATUS,
+			Api::QUERY_FILTER_VALUE => $status,
+			Api::QUERY_SORT_BY      => Model_Ml_Proposal::SORT_BY_CREATED_AT,
+			Api::QUERY_SORT_ORDER   => Api::SORT_ORDER_DESC,
+			Api::QUERY_START_PAGE   => $page,
+			Api::QUERY_COUNT        => self::DEFAULT_LIST_COUNT
+		));
+
+		Pagination::set_config(array(
+			'pagination_url' => 'admin/ml/proposal/list/'.$status,
+			'total_items'    => $proposals[Api::RESULT_TOTAL_RESULTS],
+			'uri_segment'    => 6
+		));
+
 		$this->template->set_global('nav_status', $status);
 		$this->template->content = View::forge(
 			'admin/ml/proposal/list_'.$status,
-			array('proposals' => $proposals['ml-proposals'])
+			array(
+				// TODO 承認済みと却下済みで承認日/却下日ができるようになったら、for_view_mlps の第2引数に表示項目追加
+				'ml_proposals' => Helper::for_view_mlps($proposals['mlProposals']),
+				'per_page'     => Pagination::$per_page > sizeof($proposals['mlProposals']) ?
+					sizeof($proposals['mlProposals']) : Pagination::$per_page,
+				'total_items'  => $proposals[Api::RESULT_TOTAL_RESULTS],
+			)
 		);
 	}
 

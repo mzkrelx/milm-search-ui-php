@@ -1,9 +1,8 @@
 <?php
 use Milm\Api;
+use Milm\Controller_Helper as Helper;
 
 use Fuel\Core\HttpNotFoundException;
-
-require_once 'Zend/Date.php';
 
 /**
  * 管理側のトップのコントローラです。
@@ -47,13 +46,13 @@ class Controller_Admin extends Controller_Template
 
 		// 承認済みと却下済みはML申請情報の配列はいらないので、ソートとページの指定はデフォルトでOK
 		$acceptedMlProposals = Model_Ml_Proposal::find_list(array(
-		    Api::QUERY_FILTER_BY    => Model_Ml_Proposal::FILTER_BY_STATUS,
-		    Api::QUERY_FILTER_VALUE => Model_Ml_Proposal::STATUS_ACCEPTED,
+			Api::QUERY_FILTER_BY    => Model_Ml_Proposal::FILTER_BY_STATUS,
+			Api::QUERY_FILTER_VALUE => Model_Ml_Proposal::STATUS_ACCEPTED,
 		));
 
 		$rejectedMlProposals = Model_Ml_Proposal::find_list(array(
-		    Api::QUERY_FILTER_BY    => Model_Ml_Proposal::FILTER_BY_STATUS,
-		    Api::QUERY_FILTER_VALUE => Model_Ml_Proposal::STATUS_REJECTED,
+			Api::QUERY_FILTER_BY    => Model_Ml_Proposal::FILTER_BY_STATUS,
+			Api::QUERY_FILTER_VALUE => Model_Ml_Proposal::STATUS_REJECTED,
 		));
 
 		$this->template->content = View::forge(
@@ -62,30 +61,10 @@ class Controller_Admin extends Controller_Template
 				'new_count'        => number_format($newMlProposals[Api::RESULT_TOTAL_RESULTS]),
 				'accepted_count'   => number_format($acceptedMlProposals[Api::RESULT_TOTAL_RESULTS]),
 				'rejected_count'   => number_format($rejectedMlProposals[Api::RESULT_TOTAL_RESULTS]),
-				'new_ml_proposals' => $this->for_index_view($newMlProposals['mlProposals']),
+				'new_ml_proposals' => Helper::for_view_mlps($newMlProposals['mlProposals']),
 				'is_more'          => ($newMlProposals[Api::RESULT_TOTAL_RESULTS] > 10),
 			)
 		);
-	}
-
-	/**
-	 * ML登録申請情報の配列をビュー用に変換します。
-	 *
-	 * @param array $ml_proposals
-	 * @return multitype:multitype:unknown Ambigous <string, unknown>
-	 */
-	private function for_index_view($ml_proposals)
-	{
-		$for_view_ml_proposals = array();
-		foreach ($ml_proposals as $ml_proposal) {
-			$created_at = new Zend_Date($ml_proposal['createdAt'], Zend_Date::ISO_8601);
-			$for_view_ml_proposals[] = array(
-				'id'        => $ml_proposal['id'],
-				'createdAt' => $created_at->toString('y/MM/dd'),
-				'mlTitle'   => $ml_proposal['mlTitle'],
-			);
-		}
-		return $for_view_ml_proposals;
 	}
 
 	/**
