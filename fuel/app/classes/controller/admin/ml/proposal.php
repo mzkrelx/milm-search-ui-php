@@ -68,9 +68,9 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 		));
 
 		Pagination::set_config(array(
-			'pagination_url' => 'admin/ml/proposal/list/'.$status,
-			'total_items'    => $proposals[Api::RESULT_TOTAL_RESULTS],
-			'uri_segment'    => 6
+		'pagination_url' => 'admin/ml/proposal/list/'.$status,
+		'total_items'    => $proposals[Api::RESULT_TOTAL_RESULTS],
+		'uri_segment'    => 6
 		));
 
 		$this->template->set_global('nav_status', $status);
@@ -80,7 +80,7 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 				// TODO 承認済みと却下済みで承認日/却下日ができるようになったら、for_view_mlps の第2引数に表示項目追加
 				'ml_proposals' => Helper::for_view_mlps($proposals['mlProposals']),
 				'per_page'     => Pagination::$per_page > sizeof($proposals['mlProposals']) ?
-					sizeof($proposals['mlProposals']) : Pagination::$per_page,
+				sizeof($proposals['mlProposals']) : Pagination::$per_page,
 				'total_items'  => $proposals[Api::RESULT_TOTAL_RESULTS],
 			)
 		);
@@ -98,42 +98,22 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 		if ($id === null) {
 			throw new HttpNotFoundException();
 		}
+
 		$proposal = Model_Ml_Proposal::find_by_id($id);
 
-		// TODO status によってビュー切り替え。今だけサンプルでid指定
-		if ($id < 10) {
-			$this->template->set_global('nav_status', Model_Ml_Proposal::STATUS_NEW);
-			$this->template->content = View::forge(
-				'admin/ml/proposal/show_new',
-				array('proposal' => $proposal)
-			);
-			return;
+		if ($proposal == null) {
+			throw new HttpNotFoundException();
 		}
 
-		if ($id < 20) {
-			$this->template->set_global('nav_status', Model_Ml_Proposal::STATUS_ACCEPTED);
-			$this->template->content = View::forge(
-				'admin/ml/proposal/show_accepted',
-				array('proposal' => $proposal)
-			);
-			return;
-		}
-
-		if ($id < 30) {
-			$this->template->set_global('nav_status', Model_Ml_Proposal::STATUS_REJECTED);
-			$this->template->content = View::forge(
-				'admin/ml/proposal/show_rejected',
-				array('proposal' => $proposal)
-			);
-			return;
-		}
-
-		$this->template->set_global('nav_status', Model_Ml_Proposal::STATUS_NEW);
+		$status = $proposal['status'];
+		$this->template->set_global('nav_status', $status);
 		$this->template->content = View::forge(
-			'admin/ml/proposal/show_new',
-			array('proposal' => $proposal)
+			'admin/ml/proposal/show_'.$status,
+			array(
+				'proposal_id' => $id,
+				'proposal'    => Helper::for_view_mlp($proposal),
+			)
 		);
-
 	}
 
 	/**

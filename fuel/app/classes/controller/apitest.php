@@ -45,14 +45,21 @@ class Controller_Apitest extends Controller_Rest
 				$this->response(array('error' => '無効な値:'.$id), 404);
 				return;
 			}
+			$status = 'new';
+			if ($id > 10) {
+				$status = 'accepted';
+			}
+			if ($id > 20) {
+				$status = 'rejected';
+			}
 			$this->response(array(
-				"proposerName" => "申請者の名前".$id,
-				"proposerEmail" => "申請者のメールアドレス",
-				"mlTitle" => "MLタイトル(ML名)",
-				"status" => "new",
-				"archiveType" => "メールアーカイブの種類(ex. mailman)",
-				"archiveUrl" => "メールアーカイブの基底URL",
-				"comment" => "コメント(MLの説明など)",
+				"proposerName" => "みるむ太郎".$id,
+				"proposerEmail" => "example@sample.com",
+				"mlTitle" => "MilmSearch開発するよ！ML",
+				"status" => $status,
+				"archiveType" => "Mailman",
+				"archiveUrl" => "http://aaa.com/arcieve.html",
+				"comment" => "よろしくお願いします！",
 				"createdAt" => "2012-01-02T03:04:05+09:00",
 				"updatedAt" => "2012-11-12T13:14:15+09:00",
 			), 200);
