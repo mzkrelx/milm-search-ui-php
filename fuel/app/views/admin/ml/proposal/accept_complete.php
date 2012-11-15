@@ -3,7 +3,7 @@
 		<h1>登録申請を承認しました</h1>
 	</header>
 	<p>
-		<strong>「MilmSearchを開発するよ！ML」</strong>をMilmSearchに登録し、<br>
+		<strong>「<?php echo $proposal['mlTitle'] ?>」</strong>をMilmSearchに登録し、<br>
 		申請者にご案内メールを送信しました。
 	</p>
 	<a class="btn" href="<?php echo $base_url ?>admin">トップページへ</a>

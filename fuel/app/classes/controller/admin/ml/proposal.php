@@ -160,6 +160,7 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 	}
 
 	/**
+	 * 承認確認画面を表示するアクション
 	 *
 	 * @return void
 	 */
@@ -173,29 +174,64 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 		$this->template->set_global('nav_status', Model_Ml_Proposal::STATUS_NEW);
 		$this->template->content = View::forge(
 			'admin/ml/proposal/accept_confirm',
-			array('proposal' => $proposal)
+			array(
+				'proposal_id' => $id,
+				'proposal'    => Helper::for_view_mlp($proposal),
+			)
 		);
 	}
 
 	/**
+	 * 承認完了画面を表示するアクション
 	 *
 	 * @return void
 	 */
-	public function action_accept($id = null)
+	public function action_accept()
 	{
+		$id = Helper::get_param('id', null);
 		if ($id === null) {
 			throw new HttpNotFoundException();
 		}
+		if (!Helper::is_post()) {
+			return Response::redirect('admin/ml/proposal/accept_confirm/'.$id);
+		}
+
 		$proposal = Model_Ml_Proposal::find_by_id($id);
+		$proposal['status'] = Model_Ml_Proposal::STATUS_ACCEPTED;
+		Model_Ml_Proposal::update($id, $this->to_update_proposal($proposal));
 
 		$this->template->set_global('nav_status', Model_Ml_Proposal::STATUS_NEW);
 		$this->template->content = View::forge(
 			'admin/ml/proposal/accept_complete',
-			array('proposal' => $proposal)
+			array(
+				'proposal_id' => $id,
+				'proposal'    => Helper::for_view_mlp($proposal),
+			)
 		);
 	}
 
 	/**
+	 * ML登録申請情報をUPDATE用の配列に変換します。
+	 *
+	 * @param  array $proposal
+	 * @return array
+	 */
+	public function to_update_proposal($proposal)
+	{
+		if (isset($proposal['id'])) {
+			unset($proposal['id']);
+		}
+		if (isset($proposal['createdAt'])) {
+			unset($proposal['createdAt']);
+		}
+		if (isset($proposal['updatedAt'])) {
+			unset($proposal['updatedAt']);
+		}
+		return $proposal;
+	}
+
+	/**
+	 * 却下確認画面を表示するアクション
 	 *
 	 * @return void
 	 */
@@ -209,25 +245,39 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 		$this->template->set_global('nav_status', Model_Ml_Proposal::STATUS_NEW);
 		$this->template->content = View::forge(
 			'admin/ml/proposal/reject_confirm',
-			array('proposal' => $proposal)
+			array(
+				'proposal_id' => $id,
+				'proposal'    => Helper::for_view_mlp($proposal),
+			)
 		);
 	}
 
 	/**
+	 * 却下完了画面を表示するアクション
 	 *
 	 * @return void
 	 */
-	public function action_reject($id = null)
+	public function action_reject()
 	{
+		$id = Helper::get_param('id', null);
 		if ($id === null) {
-			throw new HttpNotFoundException();
+		    throw new HttpNotFoundException();
 		}
+		if (!Helper::is_post()) {
+		    return Response::redirect('admin/ml/proposal/reject_confirm/'.$id);
+		}
+
 		$proposal = Model_Ml_Proposal::find_by_id($id);
+		$proposal['status'] = Model_Ml_Proposal::STATUS_REJECTED;
+		Model_Ml_Proposal::update($id, $this->to_update_proposal($proposal));
 
 		$this->template->set_global('nav_status', Model_Ml_Proposal::STATUS_NEW);
 		$this->template->content = View::forge(
 			'admin/ml/proposal/reject_complete',
-			array('proposal' => $proposal)
+			array(
+				'proposal_id' => $id,
+				'proposal'    => Helper::for_view_mlp($proposal),
+			)
 		);
 	}
 
