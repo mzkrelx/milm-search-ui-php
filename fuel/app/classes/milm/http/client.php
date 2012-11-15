@@ -28,4 +28,26 @@ class Http_Client
 		$array = Format::forge(Unicode::decode($response->getBody()), 'json')->to_array();
 		return $array;
 	}
+
+	/**
+	 * 配列を json にして Body にセットし、PUT メソッドで URL にアクセスします。
+	 *
+	 * @param  string $url   URL
+	 * @param  array  $array json に変換される body
+	 * @throws HttpServerErrorException
+	 */
+	public static function put_json($url, $array)
+	{
+		$json = Format::forge($array)->to_json();
+
+		$http_client = new \Zend_Http_Client($url);
+		$http_client->setRawData($json, 'application/json')
+			->setHeaders(array('Content-Type' => '"appliction/json"; charset=utf-8'));
+
+		$response = $http_client->request('PUT');
+
+		if ($response->getStatus() != 204) {
+			throw new HttpServerErrorException('サーバーエラー:'.$response->getBody());
+		}
+	}
 }

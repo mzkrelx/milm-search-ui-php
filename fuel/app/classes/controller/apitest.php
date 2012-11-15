@@ -55,7 +55,7 @@ class Controller_Apitest extends Controller_Rest
 			$this->response(array(
 				"proposerName" => "みるむ太郎".$id,
 				"proposerEmail" => "example@sample.com",
-				"mlTitle" => "MilmSearch開発するよ！ML",
+				"mlTitle" => "MilmSearch開発するよ！ML".$id,
 				"status" => $status,
 				"archiveType" => "Mailman",
 				"archiveUrl" => "http://aaa.com/arcieve.html",
@@ -121,11 +121,11 @@ class Controller_Apitest extends Controller_Rest
 	 */
 	public function put_mlproposals($id = null)
 	{
-		if ($id === null) {
+		if ($id === null or $id > 100) {
 			$this->response(array('error' => '無効な値:'.$id), 404);
 			return;
 		}
-		$this->response(array(), 200);
+		$this->response(array(), 204);
 	}
 
 	/**

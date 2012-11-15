@@ -68,9 +68,9 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 		));
 
 		Pagination::set_config(array(
-		'pagination_url' => 'admin/ml/proposal/list/'.$status,
-		'total_items'    => $proposals[Api::RESULT_TOTAL_RESULTS],
-		'uri_segment'    => 6
+			'pagination_url' => 'admin/ml/proposal/list/'.$status,
+			'total_items'    => $proposals[Api::RESULT_TOTAL_RESULTS],
+			'uri_segment'    => 6
 		));
 
 		$this->template->set_global('nav_status', $status);
@@ -117,8 +117,8 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 	}
 
 	/**
+	 * ML登録申請情報の編集画面を表示するアクション
 	 *
-	 * @todo GET は編集画面、POSTは変更処理
 	 * @return void
 	 */
 	public function action_edit($id = null)
@@ -126,12 +126,36 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 		if ($id === null) {
 			throw new HttpNotFoundException();
 		}
+
 		$proposal = Model_Ml_Proposal::find_by_id($id);
 
-		$this->template->set_global('nav_status', '');	//TODO $proposalのステータスによって変える
+		if ($proposal == null) {
+			throw new HttpNotFoundException();
+		}
+
+		$this->template->set_global('nav_status', $proposal['status']);
+
+		if (Helper::is_post()) {
+			$proposal['mlTitle']     = Helper::get_param('ml_title', '');
+			$proposal['archiveType'] = Helper::get_param('archive_type', '');
+			$proposal['archiveUrl']  = Helper::get_param('archive_url', '');
+
+			Model_Ml_Proposal::update($id, $proposal);
+
+			return Response::redirect('admin/ml/proposal/show/'.$id);
+		}
+
+		// when GET
 		$this->template->content = View::forge(
 			'admin/ml/proposal/edit',
-			array('proposal' => $proposal)
+			array(
+				'proposal_id' => $id,
+				'proposal'    => Helper::for_view_mlp($proposal),
+				'archive_type_options' => array(
+					Model_Ml_Proposal::ARCHIVE_TYPE_MAILMAN => 'Mailman',
+					Model_Ml_Proposal::ARCHIVE_TYPE_OTHER   => 'その他',
+				)
+			)
 		);
 	}
 

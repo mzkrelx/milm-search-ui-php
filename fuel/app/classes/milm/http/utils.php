@@ -9,7 +9,7 @@ class Http_Utils
 	 * @param  array $array
 	 * @return string
 	 */
-	public static function makeQueryString($array)
+	public static function make_query_string($array)
 	{
 		if (!is_array($array) or empty($array)) {
 			return '';

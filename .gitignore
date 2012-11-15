@@ -4,4 +4,4 @@
 /*.swp
 /report
 *.DS_Store
-
+/fuel/app/logs/*

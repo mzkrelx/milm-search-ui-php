@@ -68,10 +68,10 @@ class Test_Model_Ml_Proposal extends Fuel\Core\TestCase
 	 */
 	public function find_by_id_provider()
 	{
-	    return array(
-	        array(0),
-	        array(1),
-	    );
+		return array(
+			array(0),
+			array(1),
+		);
 	}
 
 	/**
@@ -93,10 +93,10 @@ class Test_Model_Ml_Proposal extends Fuel\Core\TestCase
 	 */
 	public function find_by_id_invalid_id_provider()
 	{
-	    return array(
-	        array(-1),
-	        array(100000000000000),
-	    );
+		return array(
+			array(-1),
+			array(100000000000000),
+		);
 	}
 
 	/**
@@ -112,6 +112,46 @@ class Test_Model_Ml_Proposal extends Fuel\Core\TestCase
 		Config::set('_ml_proposals', 'notfound');
 
 		Model_Ml_Proposal::find_by_id(1);
+	}
+
+	/**
+	 * Tests Model_Ml_Proposal::update()
+	 * エラーが発生ことなく終了する
+	 *
+	 * @test
+	 */
+	public function update()
+	{
+		Model_Ml_Proposal::update(1, array(
+			"proposerName"  => "みるむ太郎",
+			"proposerEmail" => "example@sample.com",
+			"mlTitle"       => "MilmSearch開発するよ！ML",
+			"status"        => "new",
+			"archiveType"   => "Mailman",
+			"archiveUrl"    => "http://aaa.com/arcieve.html",
+			"comment"       => "よろしくお願いします！",
+		));
+	}
+
+	/**
+	 * Tests Model_Ml_Proposal::update()
+	 * エラーが発生ことなく終了する
+	 *
+	 * @test
+	 * @expectedException Fuel\Core\HttpServerErrorException
+	 */
+	public function update_exception()
+	{
+		// テストAPIではIDが101以上は例外発生
+		Model_Ml_Proposal::update(1000, array(
+			"proposerName"  => "みるむ太郎",
+			"proposerEmail" => "example@sample.com",
+			"mlTitle"       => "MilmSearch開発するよ！ML",
+			"status"        => "new",
+			"archiveType"   => "Mailman",
+			"archiveUrl"    => "http://aaa.com/arcieve.html",
+			"comment"       => "よろしくお願いします！",
+		));
 	}
 
 }

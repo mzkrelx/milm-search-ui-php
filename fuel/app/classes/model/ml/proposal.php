@@ -31,6 +31,12 @@ class Model_Ml_Proposal
 	const STATUS_REJECTED = 'rejected';
 
 	/**
+	 * MLアーカイブタイプ
+	 */
+	const ARCHIVE_TYPE_MAILMAN = "mailman";
+	const ARCHIVE_TYPE_OTHER   = "other";
+
+	/**
 	 * ML登録申請情報のリストを取得します。
 	 *
 	 * @param  array $cond 取得条件。キー=Milm_Api::QUERY_XX、値=キー項目の値
@@ -40,7 +46,7 @@ class Model_Ml_Proposal
 	{
 		return Http_Client::get_array(
 			Config::get('_api_root_url').'/'.
-			Config::get('_ml_proposals').Http_Utils::makeQueryString($cond)
+			Config::get('_ml_proposals').Http_Utils::make_query_string($cond)
 		);
 	}
 
@@ -49,6 +55,14 @@ class Model_Ml_Proposal
 		return Http_Client::get_array(
 			Config::get('_api_root_url').'/'.
 			Config::get('_ml_proposals').'/'.$id);
+	}
+
+	public static function update($id, $data)
+	{
+		Http_Client::put_json(
+			Config::get('_api_root_url').'/'.
+			Config::get('_ml_proposals').'/'.$id,
+			$data);
 	}
 
 }

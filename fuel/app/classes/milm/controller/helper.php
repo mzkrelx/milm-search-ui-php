@@ -88,4 +88,14 @@ class Controller_Helper
 		}
 		return $for_view_mlp;
 	}
+
+	/**
+	 * POSTメソッドのアクセスかどうか判断します。
+	 *
+	 * @return boolean POST なら true
+	 */
+	public static function is_post()
+	{
+		return $_SERVER['REQUEST_METHOD'] === 'POST';
+	}
 }
