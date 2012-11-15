@@ -1,6 +1,6 @@
 <form class="well form-horizontal"
       enctype="application/x-www-form-urlencoded"
-      action="<?php echo $basePath . 'ml/proposal/add'?>"
+      action="<?php echo $base_url . 'ml/proposal/add'?>"
       method="post">
     <fieldset>
         <dl>
