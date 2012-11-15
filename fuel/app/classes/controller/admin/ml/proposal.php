@@ -140,7 +140,7 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 			$proposal['archiveType'] = Helper::get_param('archive_type', '');
 			$proposal['archiveUrl']  = Helper::get_param('archive_url', '');
 
-			Model_Ml_Proposal::update($id, $proposal);
+			Model_Ml_Proposal::update($id, $this->to_update_proposal($proposal));
 
 			return Response::redirect('admin/ml/proposal/show/'.$id);
 		}
