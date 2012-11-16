@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>MilmSearch | メーリングリストの登録申請</title>
+	<link href="../../../../../public/assets/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+	<link href="../../../../../public/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="../../../../../public/assets/css/tuning.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="container-fluid">
+	<header class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggles="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href="../../top/index.html">MilmSearch Ver.0.1</a>
+				<nav class="nav-collapse">
+					<ul class="nav nav-pills">
+						<li><a href="../list.html">MLを見る</a></li>
+						<li><a href="input.html">MLを登録する</a></li>
+					</ul>
+				</nav>
+				<a href="../../top/help.html">ヘルプ</a><br>
+				<a href="../../top/inquiry.html">お問い合わせ</a>
+			</div>
+		</div>
+	</header>
+	
+	<section>
+		<header class="page-header">
+			<h1>メーリングリストの登録申請</h1>
+		</header>
+		登録フローイメージが入ります
+		<nav>
+		<p class="pull-right">
+			<small>メーリングリスト登録は注意点について詳しくは…</small>
+			<a class="btn btn-primary" href="../../top/help.html">ヘルプ</a>
+		</p>
+		</nav>
+		
+		<form>
+			<table class="table table-bordered">
+			<tbody>
+			<tr>
+				<th><span class="text-error">【必須】</span>お名前（ニックネーム可）</th>
+				<td class="input-error"><input type="text" value=""><span class="text-error">　※お名前を入力してください</span></td>
+			</tr>
+			<tr>
+				<th><span class="text-error">【必須】</span>連絡先メールアドレス</th>
+				<td class="input-error">
+					<input type="email" value=""><span class="text-error">　※メールアドレスを入力してください</span><br>
+					確認のため、再度ご入力ください。<br>
+					<input type="email" value="">
+				</td>
+			</tr>
+			<tr>
+				<th><span class="text-error">【必須】</span>メーリングリストのタイトル</th>
+				<td class="input-error"><input type="text" value=""><span class="text-error">　※タイトルを入力してください</span></td>
+			</tr>
+			<th><span class="text-error">【必須】</span>メーリングリストのアーカイブソフトタイプ</th>
+				<td class="input-error">
+					<select>
+						<option value="選択してください">選択してください</option>
+						<option value="Mailman">Mailman</option>
+						<option value="その他">その他</option>
+						<option value="不明">不明</option>
+					</select>
+					<span class="text-error">　※タイプを選択してください</span>
+					<p><small>
+						「その他」のソフトをご利用の方は、コメント欄にソフト名をご記入ください。<br>
+						今後の参考にさせていただきます。
+					</small></p>
+				</td>
+			</tr>
+			<tr>
+				<th><span class="text-error">【必須】</span>メーリングリスト公開アーカイブのURL</th>
+				<td class="input-error">http://<input type="url" value=""><span class="text-error">　※URLを入力してください</span></td>
+			</tr>
+			<tr>
+				<th>ご質問やコメントをどうぞ</th>
+				<td><textarea value=""></textarea></td>
+			</tr>
+			</tbody>
+			</table>
+			<div class="row-fluid">
+				<div class="span12 input-error">
+				<label><input type="checkbox">利用規約に同意する</label><span class="text-error">　※規約をご確認の上、チェックボックスをチェックしてください</span>
+				<a href="../../top/rules.html">利用規約</a>
+				</div>
+			</div>
+			<div class="clearfix">
+				<a class="btn btn-large pull-left" href="../../top/index.html">トップページへ</a>
+				<input class="btn btn-large btn-primary pull-right" type="submit" value="確認する">
+			</div>
+		</form>
+		
+		</section>
+	</section>
+</div>
+<footer id="footer">
+	<div class="container-fluid">
+		<a href="">ページトップへ</a>
+		<nav>
+			<ul>
+				<li><a href="../../top/inquiry.html">お問い合わせ</a></li>
+				<li><a href="../../top/rules.html">利用規約</a></li>
+				<li><a href="../../top/poricy.html">プライバシーポリシー</a></li>
+			</ul>
+		</nav>
+		<p>Copyright © MilmSearch All Rights Reserved.</p>
+	</div>
+</footer>
+
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="../../../../../public/assets/js/bootstrap.min.js"></script>
+</body>
+</html>

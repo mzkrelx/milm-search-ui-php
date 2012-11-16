@@ -1,1 +1,0 @@
-<a href="<?php echo $base_url . 'ml/proposal' ?>">登録</a>
