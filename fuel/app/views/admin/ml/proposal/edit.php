@@ -6,15 +6,15 @@
 		<table class="table table-bordered">
 		<tbody>
 		<tr>
-			<th>MLタイトル</th>
+			<th class="tune_th-250 tune_th-head">MLタイトル</th>
 			<td><input type="text" name="ml_title" value="<?php echo $proposal['mlTitle']?>"></td>
 		</tr>
 		<tr>
-			<th>公開アーカイブURL</th>
+			<th class="tune_th-250 tune_th-head">公開アーカイブURL</th>
 			<td><input type="url" name="archive_url" value="<?php echo $proposal['archiveUrl']?>"></td>
 		</tr>
 		<tr>
-			<th>アーカイブソフトタイプ</th>
+			<th class="tune_th-250 tune_th-head">アーカイブソフトタイプ</th>
 			<td>
 				<select name="archive_type">
 				<?php foreach ($archive_type_options as $id => $label) : ?>
@@ -26,9 +26,9 @@
 		</tr>
 		</tbody>
 		</table>
-		<div class="clearfix">
-			<a class="btn btn-large pull-left" href="<?php echo $base_url ?>admin/ml/proposal/show/<?php echo $proposal_id ?>">戻る</a>
-			<input class="btn btn-large btn-primary pull-right" type="submit" value="変更する">
+		<div class="tune_decide">
+			<a class="btn btn-large tune_btn-decide" href="<?php echo $base_url ?>admin/ml/proposal/show/<?php echo $proposal_id ?>">戻る</a>
+			<input class="btn btn-large btn-primary tune_btn-decide" type="submit" value="変更する">
 		</div>
 	</form>
 </section>
