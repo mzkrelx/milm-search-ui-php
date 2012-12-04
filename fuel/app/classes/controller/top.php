@@ -4,6 +4,11 @@
  */
 class Controller_Top extends Controller_Template
 {
+
+	/**
+	 * (non-PHPdoc)
+	 * @see \Fuel\Core\Controller_Template::before()
+	 */
 	public function before()
 	{
 		parent::before();
@@ -49,6 +54,10 @@ class Controller_Top extends Controller_Template
 		$this->template->content = View::forge('top/rules');
 	}
 
+	/**
+	 * (non-PHPdoc)
+	 * @see \Fuel\Core\Controller_Template::after()
+	 */
 	public function after($response)
 	{
 		$response = parent::after($response);

@@ -1,4 +1,6 @@
 <?php
+use Milm\Unicode;
+use Milm\Api_UnexpectedStatusException;
 use Milm\Http_Client;
 use Milm\Http_Utils;
 
@@ -55,6 +57,24 @@ class Model_Ml_Proposal
 		return Http_Client::get_array(
 			Config::get('_api_root_url').'/'.
 			Config::get('_ml_proposals').'/'.$id);
+	}
+
+	public static function create($data)
+	{
+		$response = Http_Client::post_json(
+			Config::get('_api_root_url').'/'.
+			Config::get('_ml_proposals'),
+			$data);
+
+		if ($response->getStatus() != 201) {
+			throw new Api_Unexpectedstatusexception(
+				'ML登録申請情報登録時にAPIが予期せぬHTTPステータスを返しました。:'.$response->getBody()
+			);
+		}
+
+		Log::info('Status: '.$response->getStatus().
+			', Body: '.Unicode::decode($response->getBody()), __METHOD__
+		);
 	}
 
 	public static function update($id, $data)

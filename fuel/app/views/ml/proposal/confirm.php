@@ -10,36 +10,54 @@
 		<tbody>
 		<tr>
 			<th>申請者のお名前</th>
-			<td>みるむ太郎</td><?php // TODO ?>
+			<td><?php echo $proposer_name ?></td>
 		</tr>
 		<tr>
 			<th>連絡先メールアドレス</th>
-			<td>sample@example.com</td><?php // TODO ?>
+			<td><?php echo $proposer_email ?></td>
 		</tr>
 		<tr>
 			<th>メーリングリストのタイトル</th>
-			<td>MilmSearch開発メーリングリスト</td><?php // TODO ?>
+			<td><?php echo $ml_title ?></td>
 		</tr>
 		<tr>
 			<th>メーリングリストのアーカイブソフトタイプ</th>
-			<td>Mailman</td><?php // TODO ?>
+			<td><?php echo $archive_type ?></td>
 		</tr>
 		<tr>
 			<th>メーリングリスト公開アーカイブのURL</th>
-			<td>http://aaa.com/archive.html</td><?php // TODO ?>
+			<td><?php echo $archive_url ?></td>
 		</tr>
 		<tr>
 			<th>ご質問やコメントをどうぞ</th>
-			<td>よろしくお願いします！</td><?php // TODO ?>
+			<td><?php echo $comment ?></td>
 		</tr>
 		</tbody>
 	</table>
 
 	<div class="clearfix">
+		<form action="<?php echo $base_url ?>ml/proposal/input" method="post">
+			<input type="submit" class="btn btn-large pull-left" name="modify" value="修正する">
+			<input type="hidden" name="proposer_name" value="<?php echo $proposer_name ?>">
+			<input type="hidden" name="proposer_email" value="<?php echo $proposer_email ?>">
+			<input type="hidden" name="proposer_email2" value="<?php echo $proposer_email2 ?>">
+			<input type="hidden" name="ml_title" value="<?php echo $ml_title ?>">
+			<input type="hidden" name="archive_type" value="<?php echo $archive_type ?>">
+			<input type="hidden" name="archive_url" value="<?php echo $archive_url ?>">
+			<input type="hidden" name="comment" value="<?php echo $comment ?>">
+			<input type="hidden" name="agreement" value="<?php echo $agreement ?>">
+		</form>
+
 		<form action="<?php echo $base_url ?>ml/proposal/complete" method="post">
-			<input type="submit" class="btn btn-large pull-left" name="modify" value="修正する" />
-			<input type="submit" class="btn btn-large pull-right btn-primary" value="申請する" />
-			<input type="hidden" value="" />	<?php // TODO hidden ?>
+			<input type="submit" class="btn btn-large pull-right btn-primary" value="申請する">
+			<input type="hidden" name="proposer_name" value="<?php echo $proposer_name ?>">
+			<input type="hidden" name="proposer_email" value="<?php echo $proposer_email ?>">
+			<input type="hidden" name="proposer_email2" value="<?php echo $proposer_email2 ?>">
+			<input type="hidden" name="ml_title" value="<?php echo $ml_title ?>">
+			<input type="hidden" name="archive_type" value="<?php echo $archive_type ?>">
+			<input type="hidden" name="archive_url" value="<?php echo $archive_url ?>">
+			<input type="hidden" name="comment" value="<?php echo $comment ?>">
+			<input type="hidden" name="agreement" value="<?php echo $agreement ?>">
 		</form>
 	</div>
 </section>
