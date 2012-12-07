@@ -66,30 +66,20 @@ class Controller_Apitest extends Controller_Rest
 			return;
 		}
 
-		$status = 'new';
-		if (isset($_GET[Api::QUERY_FILTER_VALUE])) {
-			$status = $_GET[Api::QUERY_FILTER_VALUE];
-		}
-
-		$count = 20;
-		if (isset($_GET[Api::QUERY_COUNT])) {
-		    $count = $_GET[Api::QUERY_COUNT];
-		}
+		$status = array_get_or($_GET, Config::get('_query.filter_value'), 'new');
+		$count = array_get_or($_GET, Config::get('_query.count'), 20);
+		$page = array_get_or($_GET, Config::get('_query.start_page'), 1);
 
 		$startIndex = 1;
-		$page = 1;
-		if (isset($_GET[Api::QUERY_START_PAGE])) {
-			$page = $_GET[Api::QUERY_START_PAGE];
-		}
 		if ($page > 1) {
 			$startIndex = ($page - 1) * $count;
 		}
 
 		$total_results = 24;
 		$ml_proposals = array();
-		$ml_proposals[Api::RESULT_TOTAL_RESULTS]  = $total_results;
-		$ml_proposals[Api::RESULT_START_INDEX]    = $startIndex;
-		$ml_proposals[Api::RESULT_ITEMS_PER_PAGE] = $count;
+		$ml_proposals[Config::get('_result_key.total_results')]  = $total_results;
+		$ml_proposals[Config::get('_result_key.start_index')]    = $startIndex;
+		$ml_proposals[Config::get('_result_key.items_per_page')] = $count;
 
 		$stop_count = $count;
 		if (($total_results - $startIndex) < $count) {

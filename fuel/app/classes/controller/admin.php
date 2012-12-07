@@ -36,33 +36,33 @@ class Controller_Admin extends Controller_Template
 		$display_count = 10;
 
 		$newMlProposals = Model_Ml_Proposal::find_list(array(
-			Api::QUERY_FILTER_BY    => Model_Ml_Proposal::FILTER_BY_STATUS,
-			Api::QUERY_FILTER_VALUE => Model_Ml_Proposal::STATUS_NEW,
-			Api::QUERY_SORT_BY      => Model_Ml_Proposal::SORT_BY_CREATED_AT,
-			Api::QUERY_SORT_ORDER   => Api::SORT_ORDER_DESC,
-			Api::QUERY_START_PAGE   => 1,
-			Api::QUERY_COUNT        => $display_count
+			Config::get('_query.filter_by')    => Config::get('_mlp.filter_by.status'),
+			Config::get('_query.filter_value') => Config::get('_mlp.status.new'),
+			Config::get('_query.sort_by')      => Config::get('_mlp.sort_by.created_at'),
+			Config::get('_query.sort_order')   => Config::get('_sort_order.desc'),
+			Config::get('_query.start_page')   => 1,
+			Config::get('_query.count')        => $display_count,
 		));
 
 		// 承認済みと却下済みはML申請情報の配列はいらないので、ソートとページの指定はデフォルトでOK
 		$acceptedMlProposals = Model_Ml_Proposal::find_list(array(
-			Api::QUERY_FILTER_BY    => Model_Ml_Proposal::FILTER_BY_STATUS,
-			Api::QUERY_FILTER_VALUE => Model_Ml_Proposal::STATUS_ACCEPTED,
+			Config::get('_query.filter_by')    => Config::get('_mlp.filter_by.status'),
+			Config::get('_query.filter_value') => Config::get('_mlp.status.accepted'),
 		));
 
 		$rejectedMlProposals = Model_Ml_Proposal::find_list(array(
-			Api::QUERY_FILTER_BY    => Model_Ml_Proposal::FILTER_BY_STATUS,
-			Api::QUERY_FILTER_VALUE => Model_Ml_Proposal::STATUS_REJECTED,
+			Config::get('_query.filter_by')    => Config::get('_mlp.filter_by.status'),
+			Config::get('_query.filter_value') => Config::get('_mlp.status.rejected'),
 		));
 
 		$this->template->content = View::forge(
 			'admin/index',
 			array(
-				'new_count'        => number_format($newMlProposals[Api::RESULT_TOTAL_RESULTS]),
-				'accepted_count'   => number_format($acceptedMlProposals[Api::RESULT_TOTAL_RESULTS]),
-				'rejected_count'   => number_format($rejectedMlProposals[Api::RESULT_TOTAL_RESULTS]),
-				'new_ml_proposals' => Helper::for_view_mlps($newMlProposals['mlProposals']),
-				'is_more'          => ($newMlProposals[Api::RESULT_TOTAL_RESULTS] > 10),
+				'new_count'        => number_format($newMlProposals[Config::get('_result_key.total_results')]),
+				'accepted_count'   => number_format($acceptedMlProposals[Config::get('_result_key.total_results')]),
+				'rejected_count'   => number_format($rejectedMlProposals[Config::get('_result_key.total_results')]),
+				'new_ml_proposals' => Helper::for_view_mlps($newMlProposals[Config::get('_result_key.ml_proposals')]),
+				'is_more'          => ($newMlProposals[Config::get('_result_key.total_results')] > 10),
 			)
 		);
 	}

@@ -257,7 +257,8 @@ return array(
 		 * If you don't want the config in a group use null as groupname.
 		 */
 		'config'  => array(
-			'_api' => null
+			'_api' => null,
+			'_system' => null
 		),
 
 		/**
