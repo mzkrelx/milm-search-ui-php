@@ -29,6 +29,13 @@ function get_or($string, $else = "") {
 	}
 }
 
+function get_bigger($one, $other) {
+	if ($one > $other) {
+		return $one;
+	}
+	return $other;
+}
+
 /**
  * Echo string. But if string is null, then echo else.
  *

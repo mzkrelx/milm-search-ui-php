@@ -45,9 +45,9 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 	public function action_list($status = 'new', $page = 1)
 	{
 		switch ($status) {
-			case Model_Ml_Proposal::STATUS_NEW:
-			case Model_Ml_Proposal::STATUS_ACCEPTED:
-			case Model_Ml_Proposal::STATUS_REJECTED:
+			case Config::get('_mlp.status.new'):
+			case Config::get('_mlp.status.accepted'):
+			case Config::get('_mlp.status.rejected'):
 				// OK, do nothing
 				break;
 			default:
@@ -58,18 +58,18 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 			throw new HttpNotFoundException();
 		}
 
-		$proposals = Model_Ml_Proposal::find_list(array(
-			Api::QUERY_FILTER_BY    => Model_Ml_Proposal::FILTER_BY_STATUS,
-			Api::QUERY_FILTER_VALUE => $status,
-			Api::QUERY_SORT_BY      => Model_Ml_Proposal::SORT_BY_CREATED_AT,
-			Api::QUERY_SORT_ORDER   => Api::SORT_ORDER_DESC,
-			Api::QUERY_START_PAGE   => $page,
-			Api::QUERY_COUNT        => self::DEFAULT_LIST_COUNT
+		$results = Model_Ml_Proposal::find_list(array(
+			Config::get('_query.filter_by')    => Config::get('_mlp.filter_by.status'),
+			Config::get('_query.filter_value') => $status,
+			Config::get('_query.sort_by')      => Config::get('_mlp.sort_by.created_at'),
+			Config::get('_query.sort_order')   => Config::get('_sort_order.desc'),
+			Config::get('_query.start_page')   => $page,
+			Config::get('_query.count')        => self::DEFAULT_LIST_COUNT
 		));
 
 		Pagination::set_config(array(
 			'pagination_url' => 'admin/ml/proposal/list/'.$status,
-			'total_items'    => $proposals[Api::RESULT_TOTAL_RESULTS],
+			'total_items'    => $results[Config::get('_result_key.total_results')],
 			'uri_segment'    => 6
 		));
 
@@ -78,10 +78,9 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 			'admin/ml/proposal/list_'.$status,
 			array(
 				// TODO 承認済みと却下済みで承認日/却下日ができるようになったら、for_view_mlps の第2引数に表示項目追加
-				'ml_proposals' => Helper::for_view_mlps($proposals['mlProposals']),
-				'per_page'     => Pagination::$per_page > sizeof($proposals['mlProposals']) ?
-				sizeof($proposals['mlProposals']) : Pagination::$per_page,
-				'total_items'  => $proposals[Api::RESULT_TOTAL_RESULTS],
+				'ml_proposals' => Helper::for_view_mlps($results[Config::get('_result_key.ml_proposals')]),
+				'per_page'     => get_bigger(Pagination::$per_page, sizeof($results[Config::get('_result_key.ml_proposals')])),
+				'total_items'  => $results[Config::get('_result_key.total_results')],
 			)
 		);
 	}
@@ -152,8 +151,8 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 				'proposal_id' => $id,
 				'proposal'    => Helper::for_view_mlp($proposal),
 				'archive_type_options' => array(
-					Model_Ml_Proposal::ARCHIVE_TYPE_MAILMAN => 'Mailman',
-					Model_Ml_Proposal::ARCHIVE_TYPE_OTHER   => 'その他',
+					Config::get('_ml_archive_type.mailman') => Config::get('_ml_archive_type.mailman_label'),
+					Config::get('_ml_archive_type.other')   => Config::get('_ml_archive_type.other_label'),
 				)
 			)
 		);
@@ -171,7 +170,7 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 		}
 		$proposal = Model_Ml_Proposal::find_by_id($id);
 
-		$this->template->set_global('nav_status', Model_Ml_Proposal::STATUS_NEW);
+		$this->template->set_global('nav_status', Config::get('_mlp.status.new'));
 		$this->template->content = View::forge(
 			'admin/ml/proposal/accept_confirm',
 			array(
@@ -197,10 +196,10 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 		}
 
 		$proposal = Model_Ml_Proposal::find_by_id($id);
-		$proposal['status'] = Model_Ml_Proposal::STATUS_ACCEPTED;
+		$proposal['status'] = Config::get('_mlp.status.accepted');
 		Model_Ml_Proposal::update($id, $this->to_update_proposal($proposal));
 
-		$this->template->set_global('nav_status', Model_Ml_Proposal::STATUS_NEW);
+		$this->template->set_global('nav_status', Config::get('_mlp.status.new'));
 		$this->template->content = View::forge(
 			'admin/ml/proposal/accept_complete',
 			array(
@@ -242,7 +241,7 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 		}
 		$proposal = Model_Ml_Proposal::find_by_id($id);
 
-		$this->template->set_global('nav_status', Model_Ml_Proposal::STATUS_NEW);
+		$this->template->set_global('nav_status', Config::get('_mlp.status.new'));
 		$this->template->content = View::forge(
 			'admin/ml/proposal/reject_confirm',
 			array(
@@ -268,10 +267,10 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 		}
 
 		$proposal = Model_Ml_Proposal::find_by_id($id);
-		$proposal['status'] = Model_Ml_Proposal::STATUS_REJECTED;
+		$proposal['status'] = Config::get('_mlp.status.rejected');
 		Model_Ml_Proposal::update($id, $this->to_update_proposal($proposal));
 
-		$this->template->set_global('nav_status', Model_Ml_Proposal::STATUS_NEW);
+		$this->template->set_global('nav_status', Config::get('_mlp.status.new'));
 		$this->template->content = View::forge(
 			'admin/ml/proposal/reject_complete',
 			array(

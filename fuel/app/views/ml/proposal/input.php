@@ -34,8 +34,8 @@
 			<td>
 				<select name="archive_type">
 					<option value="">選択してください</option>
-					<option value="<?php echo Config::get('_ml_type.mailman.label') ?>"<?php if (array_get_or($inputs, 'archive_type') === Config::get('_ml_type.mailman.label')) echo ' selected'?>><?php echo Config::get('_ml_type.mailman.label') ?></option>
-					<option value="<?php echo Config::get('_ml_type.other.label') ?>"<?php if (array_get_or($inputs, 'archive_type') === Config::get('_ml_type.other.label')) echo ' selected'?>><?php echo Config::get('_ml_type.other.label') ?></option>
+					<option value="<?php echo Config::get('_ml_archive_type.mailman_label') ?>"<?php if (array_get_or($inputs, 'archive_type') === Config::get('_ml_archive_type.mailman_label')) echo ' selected'?>><?php echo Config::get('_ml_archive_type.mailman_label') ?></option>
+					<option value="<?php echo Config::get('_ml_archive_type.other_label') ?>"<?php if (array_get_or($inputs, 'archive_type') === Config::get('_ml_archive_type.other_label')) echo ' selected'?>><?php echo Config::get('_ml_archive_type.other_label') ?></option>
 					<option value="不明"<?php if (array_get_or($inputs, 'archive_type') === '不明') echo ' selected'?>>不明</option>
 				</select>
 				<?php if (isset($errors['archive_type'])): ?><span class="text-error">　※<?php echo $errors['archive_type'] ?></span><?php endif ?>
