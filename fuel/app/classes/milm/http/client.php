@@ -50,4 +50,30 @@ class Http_Client
 			throw new HttpServerErrorException('サーバーエラー:'.$response->getBody());
 		}
 	}
+
+	/**
+	 * 配列を json にして Body にセットし、POST メソッドで URL にアクセスします。
+	 *
+	 * @param  string $url   URL
+	 * @param  array  $array json に変換される body
+	 * @throws HttpServerErrorException
+	 */
+	public static function post_json($url, $array)
+	{
+		return self::create_send_json_client(
+			$url, self::to_json($array))->request('POST');
+	}
+
+	protected static function create_send_json_client($url, $json)
+	{
+		$http_client = new \Zend_Http_Client($url);
+		$http_client->setRawData($json, 'application/json')
+		->setHeaders(array('Content-Type' => '"appliction/json"; charset=utf-8'));
+		return $http_client;
+	}
+
+	protected static function to_json(array $array)
+	{
+		return Format::forge($array)->to_json();
+	}
 }

@@ -17,7 +17,50 @@ get_include_path(),
 */
 require_once 'Zend/Debug.php';
 function d($var, $label = null) {
-    Zend_Debug::dump($var, $label);
+	Zend_Debug::dump($var, $label);
+}
+
+function get_or($string, $else = "") {
+	if (!is_null($string)) {
+		return $string;
+	}
+	else {
+		return $else;
+	}
+}
+
+function get_bigger($one, $other) {
+	if ($one > $other) {
+		return $one;
+	}
+	return $other;
+}
+
+/**
+ * Echo string. But if string is null, then echo else.
+ *
+ * @param string $string echo when not null
+ * @param string $else   echo when string is null
+ */
+function echo_or($string, $else = "") {
+	echo get_or($string, $else);
+}
+
+/**
+ * Returns value in array has key.
+ * But returns else when isset($array($key)) return false or $array($key) is null.
+ *
+ * @param array  $array
+ * @param string $key
+ * @param mixed  $else
+ */
+function array_get_or(array $array, $key, $else = "") {
+	if (isset($array[$key])) {
+		return get_or($array[$key], $else);
+	}
+	else {
+		return $else;
+	}
 }
 
 // Load in the Autoloader

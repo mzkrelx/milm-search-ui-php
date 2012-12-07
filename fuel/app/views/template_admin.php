@@ -21,14 +21,13 @@
 				<a class="brand" href="<?php echo $base_url ?>admin">MilmSearch admin</a>
 				<nav class="nav-collapse">
 					<ul class="nav nav-pills">
-					<?php // TODO 可変 class ?>
-						<li<?php if (isset($nav_status) AND $nav_status === 'new') : echo ' class="active"'; endif ?>>
+						<li<?php if (isset($nav_status) and $nav_status === 'new') : echo ' class="active"'; endif ?>>
 							<a href="<?php echo $base_url ?>admin/ml/proposal/list/new">審査待ち</a>
 						</li>
-						<li<?php if (isset($nav_status) AND $nav_status === 'accepted') : echo ' class="active"'; endif ?>>
+						<li<?php if (isset($nav_status) and $nav_status === 'accepted') : echo ' class="active"'; endif ?>>
 							<a href="<?php echo $base_url ?>admin/ml/proposal/list/accepted">承認済み</a>
 						</li>
-						<li<?php if (isset($nav_status) AND $nav_status === 'rejected') : echo ' class="active"'; endif ?>>
+						<li<?php if (isset($nav_status) and $nav_status === 'rejected') : echo ' class="active"'; endif ?>>
 							<a href="<?php echo $base_url ?>admin/ml/proposal/list/rejected">却下済み</a>
 						</li>
 					</ul>
