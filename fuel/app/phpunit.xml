@@ -37,10 +37,10 @@
     </filter>
     
     <logging>
-        <log charset="UTF-8" highlight="true" 
-             highlowerbound="70" lowupperbound="35" 
-             target="../../report" type="coverage-html" yui="true">
-        </log>
-        <log type="testdox-html" target="../../report/testdox.html"/>
+        <log type="coverage-html" target="../../report/coverage-html"
+             charset="UTF-8" highlight="true" 
+             highlowerbound="70" lowupperbound="35" yui="true"/>
+        <log type="coverage-clover" target="../../report/coverage-clover/coverage.xml"/>
+        <log type="junit" target="../../report/phpunit/log.xml" logIncompleteSkipped="false"/>
     </logging>    
 </phpunit>
