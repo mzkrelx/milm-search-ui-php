@@ -63,6 +63,23 @@ function array_get_or(array $array, $key, $else = "") {
 	}
 }
 
+/**
+ * Returns string of array.
+ *
+ * The String is result of var_dump().
+ *
+ * @param  array $array
+ * @return string
+ */
+function array_to_string(array $array) {
+	ob_start();
+	var_dump($arr);
+	$string = ob_get_contents();
+	ob_end_clean();
+
+	return $string;
+}
+
 // Load in the Autoloader
 require COREPATH.'classes'.DIRECTORY_SEPARATOR.'autoloader.php';
 class_alias('Fuel\\Core\\Autoloader', 'Autoloader');
