@@ -229,8 +229,8 @@ return array(
 		 *     array('auth'	=> PKGPATH.'auth/')
 		 * );
 		 */
-		'packages'  => array(
-			//'orm',
+		'packages' => array(
+			'email',
 		),
 
 		/**
