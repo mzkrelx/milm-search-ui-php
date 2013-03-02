@@ -195,9 +195,7 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 			return Response::redirect('admin/ml/proposal/accept_confirm/'.$id);
 		}
 
-		$proposal = Model_Ml_Proposal::find_by_id($id);
-		$proposal['status'] = Config::get('_mlp.status.accepted');
-		Model_Ml_Proposal::update($id, $this->to_update_proposal($proposal));
+		Model_Ml_Proposal::accept($id);
 
 		$this->template->set_global('nav_status', Config::get('_mlp.status.new'));
 		$this->template->content = View::forge(
@@ -266,9 +264,7 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 		    return Response::redirect('admin/ml/proposal/reject_confirm/'.$id);
 		}
 
-		$proposal = Model_Ml_Proposal::find_by_id($id);
-		$proposal['status'] = Config::get('_mlp.status.rejected');
-		Model_Ml_Proposal::update($id, $this->to_update_proposal($proposal));
+		Model_Ml_Proposal::reject($id);
 
 		$this->template->set_global('nav_status', Config::get('_mlp.status.new'));
 		$this->template->content = View::forge(

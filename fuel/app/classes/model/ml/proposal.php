@@ -3,6 +3,7 @@ use Milm\Unicode;
 use Milm\Api_UnexpectedStatusException;
 use Milm\Http_Client;
 use Milm\Http_Utils;
+use Milm\Email_Admin;
 
 use Fuel\Core\HttpServerErrorException;
 
@@ -25,6 +26,12 @@ class Model_Ml_Proposal
 		);
 	}
 
+	/**
+	 * ML登録新生情報を1件取得します。
+	 *
+	 * @param  int $id
+	 * @return array
+	 */
 	public static function find_by_id($id)
 	{
 		return Http_Client::get_array(
@@ -32,8 +39,19 @@ class Model_Ml_Proposal
 			Config::get('_ml_proposals').'/'.$id);
 	}
 
-	public static function create($data)
+	/**
+	 * ML登録申請します。
+	 *
+	 * @param  array $data 申請情報
+	 * @return void
+	 * @throws Api_Unexpectedstatusexception
+	 */
+	public static function propose($data)
 	{
+		Log::info("New ML Proposal!\n".array_to_string($data));
+
+		Email_Admin::new_ml_proposal($data);
+
 		$response = Http_Client::post_json(
 			Config::get('_api_root_url').'/'.
 			Config::get('_ml_proposals'),
@@ -50,6 +68,13 @@ class Model_Ml_Proposal
 		);
 	}
 
+	/**
+	 * 申請情報を更新します。
+	 *
+	 * @param  int $id
+	 * @param  int $data
+	 * @return void
+	 */
 	public static function update($id, $data)
 	{
 		Http_Client::put_json(
@@ -58,4 +83,32 @@ class Model_Ml_Proposal
 			$data);
 	}
 
+	/**
+	 * 申請を承認します。
+	 *
+	 * @param  int $id
+	 * @return void
+	 */
+	public static function accept($id)
+	{
+		Http_Client::post(
+			Config::get('_api_root_url').'/'.
+			Config::get('_ml_proposals').'/'.$id.
+			'?accepted=true');
+
+	}
+
+	/**
+	 * 申請を却下します。
+	 *
+	 * @param  int $id
+	 * @return void
+	 */
+	public static function reject($id)
+	{
+		Http_Client::post(
+			Config::get('_api_root_url').'/'.
+			Config::get('_ml_proposals').'/'.$id.
+			'?accepted=false');
+	}
 }

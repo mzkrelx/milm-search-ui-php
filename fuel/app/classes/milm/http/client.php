@@ -76,4 +76,24 @@ class Http_Client
 	{
 		return Format::forge($array)->to_json();
 	}
+	
+	/**
+	 * POST メソッドで URL にアクセスします。
+	 *
+	 * @param  string $url   URL
+	 * @return array レスポンスボディのJSONを配列に変換したもの
+	 * @throws HttpServerErrorException
+	 */
+	public static function post($url)
+	{
+		$http_client = new \Zend_Http_Client($url);
+		$response = $http_client->request('POST');
+		
+		if ($response->isError()) {
+		    throw new HttpServerErrorException();
+		}
+
+		$array = Format::forge(Unicode::decode($response->getBody()), 'json')->to_array();
+		return $array;
+	}	
 }
