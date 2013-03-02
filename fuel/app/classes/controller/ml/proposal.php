@@ -139,7 +139,7 @@ class Controller_Ml_Proposal extends Controller_Template
 		try
 		{
 			$data = $form->validated();
-			unset($data['proposer_name2']);
+			unset($data['proposer_email2']);
 			unset($data['agreement']);
 
 			Model_Ml_Proposal::create($data);
