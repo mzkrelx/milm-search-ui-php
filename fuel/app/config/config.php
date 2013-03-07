@@ -258,7 +258,8 @@ return array(
 		 */
 		'config'  => array(
 			'_api' => null,
-			'_system' => null
+			'_system' => null,
+			'_mailtext' => null,
 		),
 
 		/**

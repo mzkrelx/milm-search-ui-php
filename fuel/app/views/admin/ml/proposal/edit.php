@@ -7,11 +7,11 @@
 		<tbody>
 		<tr>
 			<th class="tune_th-250 tune_th-head">MLタイトル</th>
-			<td><input type="text" name="ml_title" value="<?php echo $proposal['mlTitle']?>"></td>
+			<td><input type="text" name="ml_title" value="<?php echo $proposal['ml_title']?>"></td>
 		</tr>
 		<tr>
 			<th class="tune_th-250 tune_th-head">公開アーカイブURL</th>
-			<td><input type="url" name="archive_url" value="<?php echo $proposal['archiveUrl']?>"></td>
+			<td><input type="url" name="archive_url" value="<?php echo $proposal['archive_url']?>"></td>
 		</tr>
 		<tr>
 			<th class="tune_th-250 tune_th-head">アーカイブソフトタイプ</th>

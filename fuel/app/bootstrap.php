@@ -80,6 +80,19 @@ function array_to_string(array $array) {
 	return $string;
 }
 
+/**
+ * キャメルケースなどの文字列をスネークケースに変換します。
+ *
+ * @param  string $string もとになる文字列
+ * @return string
+ */
+function snake_case($string)
+{
+	$string = preg_replace('/([A-Z])/', '_$1', $string);
+	$string = strtolower($string);
+	return ltrim($string, '_');
+}
+
 // Load in the Autoloader
 require COREPATH.'classes'.DIRECTORY_SEPARATOR.'autoloader.php';
 class_alias('Fuel\\Core\\Autoloader', 'Autoloader');

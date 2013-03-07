@@ -72,10 +72,10 @@ return array(
 	 * APIの検索結果の項目名
 	 */
 	'_result_key' => array(
-		'total_results'  => 'totalResults',
-		'start_index'    => 'startIndex',
-		'items_per_page' => 'itemsPerPage',
-		'ml_proposals'   => 'mlProposals',
+		'total_results'  => 'total_results',
+		'start_index'    => 'start_index',
+		'items_per_page' => 'items_per_page',
+		'ml_proposals'   => 'ml_proposals',
 	),
 
 );

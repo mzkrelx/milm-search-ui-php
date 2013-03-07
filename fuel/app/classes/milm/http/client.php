@@ -26,7 +26,26 @@ class Http_Client
 		}
 
 		$array = Format::forge(Unicode::decode($response->getBody()), 'json')->to_array();
-		return $array;
+		return self::toSnakeKey($array);
+	}
+
+	/**
+	 * 配列のキーをスネークケースの配列に変換します。
+	 *
+	 * @param  array $array 変換する配列
+	 * @return array
+	 */
+	private static function toSnakeKey(array $array) {
+		$snakeArray = array();
+		foreach ($array as $key => $val) {
+			if (is_array($val)) {
+				$snakeVal = self::toSnakeKey($val);
+				$snakeArray[snake_case($key)] = $snakeVal;
+			} else {
+				$snakeArray[snake_case($key)] = $val;
+			}
+		}
+		return $snakeArray;
 	}
 
 	/**
@@ -76,7 +95,7 @@ class Http_Client
 	{
 		return Format::forge($array)->to_json();
 	}
-	
+
 	/**
 	 * POST メソッドで URL にアクセスします。
 	 *
@@ -88,12 +107,12 @@ class Http_Client
 	{
 		$http_client = new \Zend_Http_Client($url);
 		$response = $http_client->request('POST');
-		
+
 		if ($response->isError()) {
 		    throw new HttpServerErrorException();
 		}
 
 		$array = Format::forge(Unicode::decode($response->getBody()), 'json')->to_array();
 		return $array;
-	}	
+	}
 }

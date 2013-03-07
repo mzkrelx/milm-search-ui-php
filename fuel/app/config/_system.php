@@ -12,9 +12,9 @@ return array(
 	'_webmaster_name' => '',
 
 	/** 管理者向け通知先メールアドレス */
-	'_admin_mail_email' => 'mizuki@relx.jp',
+	'_admin_mail_email' => '',
 
 	/** 管理者向け通知先名 */
-	'_admin_mail_name' => 'Mizuki Development',
+	'_admin_mail_name' => '',
 
 );
