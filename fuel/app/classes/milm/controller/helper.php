@@ -5,17 +5,17 @@ require_once 'Zend/Date.php';
 
 class Controller_Helper
 {
-	public static $default_ml_proposals_cols = array('id', 'createdAt', 'mlTitle');
+	public static $default_ml_proposals_cols = array('id', 'created_at', 'ml_title');
 	public static $default_ml_proposal_cols = array(
-		'proposerName',
-		'proposerEmail',
-		'mlTitle',
+		'proposer_name',
+		'proposer_email',
+		'ml_title',
 		'status',
-		'archiveType',
-		'archiveUrl',
+		'archive_type',
+		'archive_url',
 		'comment',
-		'createdAt',
-		'updatedAt',
+		'created_at',
+		'updated_at',
 	);
 
 	/**
@@ -80,7 +80,7 @@ class Controller_Helper
 		$for_view_mlp = array();
 		foreach ($cols as $col) {
 			$val = $ml_proposal[$col];
-			if ('createdAt' === $col or 'updatedAt' === $col) {
+			if ('created_at' === $col or 'updated_at' === $col) {
 				$date = new \Zend_Date($val, \Zend_Date::ISO_8601);
 				$val = $date->toString('y/MM/dd');
 			}

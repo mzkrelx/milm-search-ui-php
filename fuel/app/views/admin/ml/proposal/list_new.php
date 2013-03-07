@@ -16,8 +16,8 @@
 	<tbody>
 	<?php foreach ($ml_proposals as $ml_proposal): ?>
 		<tr>
-			<td class="tune_table_date"><?php echo $ml_proposal['createdAt'] ?></td>
-			<td><a href="<?php echo $base_url ?>admin/ml/proposal/show/<?php echo $ml_proposal['id'] ?>"><?php echo $ml_proposal['mlTitle'] ?></a></td>
+			<td class="tune_table_date"><?php echo $ml_proposal['created_at'] ?></td>
+			<td><a href="<?php echo $base_url ?>admin/ml/proposal/show/<?php echo $ml_proposal['id'] ?>"><?php echo $ml_proposal['ml_title'] ?></a></td>
 		</tr>
 	<?php endforeach ?>
 	</tbody>

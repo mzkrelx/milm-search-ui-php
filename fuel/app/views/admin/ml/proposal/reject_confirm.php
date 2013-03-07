@@ -1,17 +1,11 @@
 <section>
 	<header class="page-header">
-		<h1><?php echo $proposal['mlTitle'] ?></h1>
+		<h1><?php echo $proposal['ml_title'] ?></h1>
 	</header>
 	<p>このMLを登録申請を却下し、申請者に下記のご案内メールを送信します。</p>
 	<h2>ご案内メール</h2>
 	<div class="tune_mailtext">
-		<p>
-			登録申請却下のご案内メール本文が入ります<br>
-			登録申請却下のご案内メール本文が入ります<br>
-			登録申請却下のご案内メール本文が入ります<br>
-			登録申請却下のご案内メール本文が入ります<br>
-			登録申請却下のご案内メール本文が入ります
-		</p>
+		<pre><?php echo $mail_text ?></pre>
 	</div>
 	<p><strong>このMLの登録申請を却下してよろしいですか？</strong></p>
 	<form action="<?php echo $base_url ?>admin/ml/proposal/reject" method="post">

@@ -1,12 +1,12 @@
 <section>
 	<header class="page-header">
-		<h1><?php echo $proposal['mlTitle']?></h1>
+		<h1><?php echo $proposal['ml_title']?></h1>
 	</header>
 	<table class="table table-bordered">
 	<tbody>
 		<tr>
 			<th class="text-warning tune_table-strejected"><strong>却下済み</strong></th>
-			<td>申請日：<?php echo $proposal['createdAt']?>　却下日：TODO<?php // TODO ?></td>
+			<td>申請日：<?php echo $proposal['created_at']?>　却下日：TODO<?php // TODO ?></td>
 		</tr>
 		<tr>
 			<th class="tune_th-250 tune_th-head">管理者コメント</th>
@@ -22,15 +22,15 @@
 		<tbody>
 		<tr>
 			<th class="tune_th-250 tune_th-head">MLタイトル</th>
-			<td><?php echo $proposal['mlTitle']?><i class="tune_icon-ok pull-right"></i></td>
+			<td><?php echo $proposal['ml_title']?><i class="tune_icon-ok pull-right"></i></td>
 		</tr>
 		<tr>
 			<th class="tune_th-250 tune_th-head">公開アーカイブURL</th>
-			<td><a href="<?php echo $proposal['archiveUrl'] ?>"><?php echo $proposal['archiveUrl'] ?></a><i class="tune_icon-ok pull-right"></i></td>
+			<td><a href="<?php echo $proposal['archive_url'] ?>"><?php echo $proposal['archive_url'] ?></a><i class="tune_icon-ok pull-right"></i></td>
 		</tr>
 		<tr>
 			<th class="tune_th-250 tune_th-head">アーカイブソフトタイプ</th>
-			<td><?php echo $proposal['archiveType'] ?><i class="tune_icon-ok pull-right"></i></td>
+			<td><?php echo $proposal['archive_type'] ?><i class="tune_icon-ok pull-right"></i></td>
 		</tr>
 		</tbody>
 		</table>
@@ -43,11 +43,11 @@
 		<tbody>
 		<tr>
 			<th class="tune_th-250 tune_th-head">申請者名</th>
-			<td><?php echo $proposal['proposerName'] ?></td>
+			<td><?php echo $proposal['proposer_name'] ?></td>
 		</tr>
 		<tr>
 			<th class="tune_th-250 tune_th-head">連絡先メールアドレス</th>
-			<td><?php echo $proposal['proposerEmail'] ?></td>
+			<td><?php echo $proposal['proposer_email'] ?></td>
 		</tr>
 		<tr>
 			<th class="tune_th-250 tune_th-head">申請時コメント</th>
