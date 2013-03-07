@@ -31,7 +31,7 @@ class Test_Model_Ml_Proposal extends Fuel\Core\TestCase
 	public function find_list()
 	{
 		$actual = Model_Ml_Proposal::find_list(null);
-		$this->assertArrayHasKey('mlProposals', $actual);
+		$this->assertArrayHasKey('ml_proposals', $actual);
 	}
 
 	/**
@@ -58,7 +58,7 @@ class Test_Model_Ml_Proposal extends Fuel\Core\TestCase
 	public function find_by_id($id)
 	{
 		$actual = Model_Ml_Proposal::find_by_id($id);
-		$this->assertArrayHasKey('proposerName', $actual);
+		$this->assertArrayHasKey('proposer_name', $actual);
 	}
 
 	/**
@@ -123,12 +123,12 @@ class Test_Model_Ml_Proposal extends Fuel\Core\TestCase
 	public function update()
 	{
 		Model_Ml_Proposal::update(1, array(
-			"proposerName"  => "みるむ太郎",
-			"proposerEmail" => "example@sample.com",
-			"mlTitle"       => "MilmSearch開発するよ！ML",
+			"proposer_name"  => "みるむ太郎",
+			"proposer_email" => "example@sample.com",
+			"ml_title"       => "MilmSearch開発するよ！ML",
 			"status"        => "new",
-			"archiveType"   => "Mailman",
-			"archiveUrl"    => "http://aaa.com/arcieve.html",
+			"archive_type"   => "Mailman",
+			"archive_url"    => "http://aaa.com/arcieve.html",
 			"comment"       => "よろしくお願いします！",
 		));
 	}
@@ -144,12 +144,12 @@ class Test_Model_Ml_Proposal extends Fuel\Core\TestCase
 	{
 		// テストAPIではIDが101以上は例外発生
 		Model_Ml_Proposal::update(1000, array(
-			"proposerName"  => "みるむ太郎",
-			"proposerEmail" => "example@sample.com",
-			"mlTitle"       => "MilmSearch開発するよ！ML",
+			"proposer_name"  => "みるむ太郎",
+			"proposer_email" => "example@sample.com",
+			"ml_title"       => "MilmSearch開発するよ！ML",
 			"status"        => "new",
-			"archiveType"   => "Mailman",
-			"archiveUrl"    => "http://aaa.com/arcieve.html",
+			"archive_type"   => "Mailman",
+			"archive_url"    => "http://aaa.com/arcieve.html",
 			"comment"       => "よろしくお願いします！",
 		));
 	}
