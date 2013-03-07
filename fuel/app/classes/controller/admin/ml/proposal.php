@@ -135,9 +135,9 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 		$this->template->set_global('nav_status', $proposal['status']);
 
 		if (Helper::is_post()) {
-			$proposal['mlTitle']     = Helper::get_param('ml_title', '');
-			$proposal['archiveType'] = Helper::get_param('archive_type', '');
-			$proposal['archiveUrl']  = Helper::get_param('archive_url', '');
+			$proposal['ml_title']     = Helper::get_param('ml_title', '');
+			$proposal['archive_type'] = Helper::get_param('archive_type', '');
+			$proposal['archive_url']  = Helper::get_param('archive_url', '');
 
 			Model_Ml_Proposal::update($id, $this->to_update_proposal($proposal));
 
@@ -176,6 +176,7 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 			array(
 				'proposal_id' => $id,
 				'proposal'    => Helper::for_view_mlp($proposal),
+				'mail_text'   => Model_Ml_Proposal::get_accept_mail_text($proposal),
 			)
 		);
 	}
@@ -195,16 +196,16 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 			return Response::redirect('admin/ml/proposal/accept_confirm/'.$id);
 		}
 
-		$proposal = Model_Ml_Proposal::find_by_id($id);
-		$proposal['status'] = Config::get('_mlp.status.accepted');
-		Model_Ml_Proposal::update($id, $this->to_update_proposal($proposal));
+		Model_Ml_Proposal::accept($id);
 
 		$this->template->set_global('nav_status', Config::get('_mlp.status.new'));
 		$this->template->content = View::forge(
 			'admin/ml/proposal/accept_complete',
 			array(
 				'proposal_id' => $id,
-				'proposal'    => Helper::for_view_mlp($proposal),
+				'proposal'    => Helper::for_view_mlp(
+					Model_Ml_Proposal::find_by_id($id)
+				),
 			)
 		);
 	}
@@ -220,11 +221,11 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 		if (isset($proposal['id'])) {
 			unset($proposal['id']);
 		}
-		if (isset($proposal['createdAt'])) {
-			unset($proposal['createdAt']);
+		if (isset($proposal['created_at'])) {
+			unset($proposal['created_at']);
 		}
-		if (isset($proposal['updatedAt'])) {
-			unset($proposal['updatedAt']);
+		if (isset($proposal['updated_at'])) {
+			unset($proposal['updated_at']);
 		}
 		return $proposal;
 	}
@@ -247,6 +248,7 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 			array(
 				'proposal_id' => $id,
 				'proposal'    => Helper::for_view_mlp($proposal),
+				'mail_text'   => Model_Ml_Proposal::get_reject_mail_text($proposal),
 			)
 		);
 	}
@@ -266,16 +268,16 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 		    return Response::redirect('admin/ml/proposal/reject_confirm/'.$id);
 		}
 
-		$proposal = Model_Ml_Proposal::find_by_id($id);
-		$proposal['status'] = Config::get('_mlp.status.rejected');
-		Model_Ml_Proposal::update($id, $this->to_update_proposal($proposal));
+		Model_Ml_Proposal::reject($id);
 
 		$this->template->set_global('nav_status', Config::get('_mlp.status.new'));
 		$this->template->content = View::forge(
 			'admin/ml/proposal/reject_complete',
 			array(
 				'proposal_id' => $id,
-				'proposal'    => Helper::for_view_mlp($proposal),
+				'proposal'    => Helper::for_view_mlp(
+					Model_Ml_Proposal::find_by_id($id)
+				),
 			)
 		);
 	}

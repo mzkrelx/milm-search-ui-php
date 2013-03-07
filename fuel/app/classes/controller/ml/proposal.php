@@ -142,7 +142,7 @@ class Controller_Ml_Proposal extends Controller_Template
 			unset($data['proposer_email2']);
 			unset($data['agreement']);
 
-			Model_Ml_Proposal::create($data);
+			Model_Ml_Proposal::propose($data);
 
 			$this->template->set_global('title', '登録申請完了 : Milm Search');
 			$this->template->content = View::forge('ml/proposal/complete');

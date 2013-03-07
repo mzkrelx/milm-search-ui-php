@@ -96,27 +96,27 @@ class Test_Controller_Helper extends Fuel\Core\TestCase
 	public function test_for_view_mlp()
 	{
 		$ml_proposal = array(
-			"proposerName"  => "みるむ太郎",
-			"proposerEmail" => "example@sample.com",
-			"mlTitle"       => "MilmSearch開発するよ！ML",
+			"proposer_name"  => "みるむ太郎",
+			"proposer_email" => "example@sample.com",
+			"ml_title"       => "MilmSearch開発するよ！ML",
 			"status"        => "new",
-			"archiveType"   => "Mailman",
-			"archiveUrl"    => "http://aaa.com/arcieve.html",
+			"archive_type"   => "Mailman",
+			"archive_url"    => "http://aaa.com/arcieve.html",
 			"comment"       => "よろしくお願いします！",
-			"createdAt"     => "2012-01-02T03:04:05+09:00",
-			"updatedAt"     => "2012-11-12T13:14:15+09:00",
+			"created_at"     => "2012-01-02T03:04:05+09:00",
+			"updated_at"     => "2012-11-12T13:14:15+09:00",
 		);
 		$actual = Controller_Helper::for_view_mlp($ml_proposal);
 
-		$this->assertSame("みるむ太郎", $actual['proposerName']);
-		$this->assertSame("example@sample.com", $actual['proposerEmail']);
-		$this->assertSame("MilmSearch開発するよ！ML", $actual['mlTitle']);
+		$this->assertSame("みるむ太郎", $actual['proposer_name']);
+		$this->assertSame("example@sample.com", $actual['proposer_email']);
+		$this->assertSame("MilmSearch開発するよ！ML", $actual['ml_title']);
 		$this->assertSame("new", $actual['status']);
-		$this->assertSame("Mailman", $actual['archiveType']);
-		$this->assertSame("http://aaa.com/arcieve.html", $actual['archiveUrl']);
+		$this->assertSame("Mailman", $actual['archive_type']);
+		$this->assertSame("http://aaa.com/arcieve.html", $actual['archive_url']);
 		$this->assertSame("よろしくお願いします！", $actual['comment']);
-		$this->assertSame("2012/01/02", $actual['createdAt']);
-		$this->assertSame("2012/11/12", $actual['updatedAt']);
+		$this->assertSame("2012/01/02", $actual['created_at']);
+		$this->assertSame("2012/11/12", $actual['updated_at']);
 	}
 
 	/**
@@ -126,19 +126,19 @@ class Test_Controller_Helper extends Fuel\Core\TestCase
 	public function test_for_view_mlp_1col()
 	{
 		$ml_proposal = array(
-			"proposerName"  => "みるむ太郎",
-			"proposerEmail" => "example@sample.com",
-			"mlTitle"       => "MilmSearch開発するよ！ML",
+			"proposer_name"  => "みるむ太郎",
+			"proposer_email" => "example@sample.com",
+			"ml_title"       => "MilmSearch開発するよ！ML",
 			"status"        => "new",
-			"archiveType"   => "Mailman",
-			"archiveUrl"    => "http://aaa.com/arcieve.html",
+			"archive_type"   => "Mailman",
+			"archive_url"    => "http://aaa.com/arcieve.html",
 			"comment"       => "よろしくお願いします！",
-			"createdAt"     => "2012-01-02T03:04:05+09:00",
-			"updatedAt"     => "2012-11-12T13:14:15+09:00",
+			"created_at"     => "2012-01-02T03:04:05+09:00",
+			"updated_at"     => "2012-11-12T13:14:15+09:00",
 		);
-		$actual = Controller_Helper::for_view_mlp($ml_proposal, array('proposerName'));
+		$actual = Controller_Helper::for_view_mlp($ml_proposal, array('proposer_name'));
 
-		$this->assertSame("みるむ太郎", $actual['proposerName']);
+		$this->assertSame("みるむ太郎", $actual['proposer_name']);
 		$this->assertEquals(1, sizeof($actual));
 	}
 
@@ -147,24 +147,24 @@ class Test_Controller_Helper extends Fuel\Core\TestCase
 	 */
 	public function test_for_view_mlps()
 	{
-		$ml_proposals['mlProposals'] = array();
+		$ml_proposals['ml_proposals'] = array();
 		for ($i = 1; $i <= 20; $i++) {
-		    $ml_proposals['mlProposals'][] = array(
+		    $ml_proposals['ml_proposals'][] = array(
 		        "id" => $i,
-		        "proposerName" => "申請者の名前".$i,
-		        "proposerEmail" => "申請者のメールアドレス".$i,
-		        "mlTitle" => "MLタイトル(ML名)".$i,
+		        "proposer_name" => "申請者の名前".$i,
+		        "proposer_email" => "申請者のメールアドレス".$i,
+		        "ml_title" => "MLタイトル(ML名)".$i,
 		        "status" => "new",
-		        "archiveType" => "メールアーカイブの種類(ex. mailman)",
-		        "archiveUrl" => "http://xxx",
+		        "archive_type" => "メールアーカイブの種類(ex. mailman)",
+		        "archive_url" => "http://xxx",
 		        "comment" => "コメント(MLの説明など).$i",
-		        "createdAt" => "2012-01-02T03:04:05+09:00",
-		        "updatedAt" => "2012-11-12T13:14:15+09:00",
+		        "created_at" => "2012-01-02T03:04:05+09:00",
+		        "updated_at" => "2012-11-12T13:14:15+09:00",
 		    );
 		}
 
-		$actual = Controller_Helper::for_view_mlps($ml_proposals['mlProposals']);
-		$this->assertSame("2012/01/02", $actual[0]['createdAt']);
+		$actual = Controller_Helper::for_view_mlps($ml_proposals['ml_proposals']);
+		$this->assertSame("2012/01/02", $actual[0]['created_at']);
 		$this->assertEquals(20, sizeof($actual));
 		$this->assertEquals(3, sizeof($actual[0]));
 	}
@@ -175,24 +175,24 @@ class Test_Controller_Helper extends Fuel\Core\TestCase
 	 */
 	public function test_for_view_mlps_1col()
 	{
-		$ml_proposals['mlProposals'] = array();
+		$ml_proposals['ml_proposals'] = array();
 		for ($i = 1; $i <= 20; $i++) {
-		    $ml_proposals['mlProposals'][] = array(
+		    $ml_proposals['ml_proposals'][] = array(
 		        "id" => $i,
-		        "proposerName" => "申請者の名前".$i,
-		        "proposerEmail" => "申請者のメールアドレス".$i,
-		        "mlTitle" => "MLタイトル(ML名)".$i,
+		        "proposer_name" => "申請者の名前".$i,
+		        "proposer_email" => "申請者のメールアドレス".$i,
+		        "ml_title" => "MLタイトル(ML名)".$i,
 		        "status" => "new",
-		        "archiveType" => "メールアーカイブの種類(ex. mailman)",
-		        "archiveUrl" => "http://xxx",
+		        "archive_type" => "メールアーカイブの種類(ex. mailman)",
+		        "archive_url" => "http://xxx",
 		        "comment" => "コメント(MLの説明など).$i",
-		        "createdAt" => "2012-01-02T03:04:05+09:00",
-		        "updatedAt" => "2012-11-12T13:14:15+09:00",
+		        "created_at" => "2012-01-02T03:04:05+09:00",
+		        "updated_at" => "2012-11-12T13:14:15+09:00",
 		    );
 		}
 
-		$actual = Controller_Helper::for_view_mlps($ml_proposals['mlProposals'], array('mlTitle'));
-		$this->assertSame("MLタイトル(ML名)1", $actual[0]['mlTitle']);
+		$actual = Controller_Helper::for_view_mlps($ml_proposals['ml_proposals'], array('ml_title'));
+		$this->assertSame("MLタイトル(ML名)1", $actual[0]['ml_title']);
 		$this->assertEquals(20, sizeof($actual));
 		$this->assertEquals(1, sizeof($actual[0]));
 	}
