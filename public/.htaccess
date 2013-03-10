@@ -5,4 +5,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 
 RewriteRule ^(.*)$ index.php/$1 [L]
 
-RewriteBase /milm-ui
+SetEnv FUEL_ENV PRODUCTION

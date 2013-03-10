@@ -1,6 +1,6 @@
 <?php
 /**
- * The development system settings.
+ * The stage system settings.
  */
 
 return array(
@@ -15,6 +15,6 @@ return array(
 	'_admin_mail_email' => 'mizuki@relx.jp',
 
 	/** 管理者向け通知先名 */
-	'_admin_mail_name' => 'MilmSearch Development',
+	'_admin_mail_name' => 'MilmSearch Stage',
 
 );

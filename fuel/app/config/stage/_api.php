@@ -1,6 +1,6 @@
 <?php
 /**
- * The development api settings.
+ * The stage api settings.
  */
 
 return array(
