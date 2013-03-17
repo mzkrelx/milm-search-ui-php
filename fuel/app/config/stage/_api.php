@@ -4,7 +4,7 @@
  */
 
 return array(
-	'_api_root_url' => "http://dev.milmsearch.org/apitest",
+	'_api_root_url' => "http://stage.milmsearch.org/api",
 	'_ml_proposals' => "mlproposals",
 	'_mls' => "mls",
 );
