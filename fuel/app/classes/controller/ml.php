@@ -69,7 +69,7 @@ class Controller_Ml extends Controller_Template
 
 		$mls = Model_Ml::find_list(array());
 
-		$this->template->content = View::forge('ml/list', array('mls' => $mls['mls']));
+		$this->template->content = View::forge('ml/list', array('mls' => $mls['items']));
 	}
 
 	/**
