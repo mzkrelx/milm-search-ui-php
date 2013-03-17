@@ -1,5 +1,4 @@
 <?php
-
 // Load the PUPUnit Autoloader
 include_once('PHPUnit/Autoload.php');
 
