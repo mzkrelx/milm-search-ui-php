@@ -5,4 +5,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 
 RewriteRule ^(.*)$ index.php/$1 [L]
 
-SetEnv FUEL_ENV PRODUCTION
+SetEnv FUEL_ENV production
