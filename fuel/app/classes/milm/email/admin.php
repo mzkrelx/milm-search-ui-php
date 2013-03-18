@@ -42,10 +42,10 @@ class Email_Admin
 	{
 		$email = \Email::forge();
 		$email->from(
-			\Config::get('_webmaster_email'),
-			\Config::get('_webmaster_name')
+			\Config::get('_system.email'),
+			\Config::get('_system.name')
 		);
-		$email->to(\Config::get('_admin_mail_email'), \Config::get('_admin_mail_name'));
+		$email->to(\Config::get('_admin.email'), \Config::get('_admin.name'));
 		$email->subject('[MilmSearch] ML登録申請が届きました');
 
 		$email->body(

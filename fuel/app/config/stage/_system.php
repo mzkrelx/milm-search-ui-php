@@ -5,16 +5,34 @@
 
 return array(
 
-	/** WEBマスターのメールアドレス。お問い合わせ先、システムメールの送信者 */
-	'_webmaster_email' => 'noreply@milmsearch.org',
+	/** システムの設定 */
+	'_system' => array(
 
-	/** WEBマスターの名前 */
-	'_webmaster_name' => 'MilmSearch',
+		/** システムメールの送信元メールアドレス */
+		'email' => 'noreply@milmsearch.org',
 
-	/** 管理者向け通知先メールアドレス */
-	'_admin_mail_email' => 'mizuki@relx.jp',
+		/** システムメールの送信元名 */
+		'name' => 'MilmSearch Stage',
+	),
 
-	/** 管理者向け通知先名 */
-	'_admin_mail_name' => 'MilmSearch Stage',
+	/** WEBマスター(お問い合わせ先など)の設定 */
+	'_webmaster' => array(
+
+		/** WEBマスターのメールアドレス */
+		'email' => 'webmaster@milmsearch.org',
+
+		/** WEBマスターの名前 */
+		'name' => 'MilmSearch Stage',
+	),
+
+	/** 管理者の設定 */
+	'_admin' => array(
+
+		/** 管理者向け通知先メールアドレス */
+		'email' => 'mizuki@relx.jp',
+
+		/** 管理者向け通知先名 */
+		'name' => 'MilmSearch Stage Admin',
+	),
 
 );

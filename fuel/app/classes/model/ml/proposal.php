@@ -140,8 +140,8 @@ class Model_Ml_Proposal
 	{
 		$email = Email::forge();
 		$email->from(
-			Config::get('_webmaster_email'),
-			Config::get('_webmaster_name')
+			Config::get('_system.email'),
+			Config::get('_system.name')
 		);
 		$email->subject(Config::get('_mail_accepted_subject'));
 
@@ -208,8 +208,8 @@ class Model_Ml_Proposal
 	{
 		$email = Email::forge();
 		$email->from(
-				Config::get('_webmaster_email'),
-				Config::get('_webmaster_name')
+				Config::get('_system.email'),
+				Config::get('_system.name')
 		);
 		$email->subject(Config::get('_mail_rejected_subject'));
 
