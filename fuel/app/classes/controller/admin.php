@@ -64,7 +64,7 @@ class Controller_Admin extends Controller_Template
 	{
 		$display_count = 10;
 
-		$newMlProposals = Model_Ml_Proposal::find_list(array(
+		$new_ml_proposals = Model_Ml_Proposal::find_list(array(
 			Config::get('_query.filter_by')    => Config::get('_mlp.filter_by.status'),
 			Config::get('_query.filter_value') => Config::get('_mlp.status.new'),
 			Config::get('_query.sort_by')      => Config::get('_mlp.sort_by.created_at'),
@@ -74,12 +74,12 @@ class Controller_Admin extends Controller_Template
 		));
 
 		// 承認済みと却下済みはML申請情報の配列はいらないので、ソートとページの指定はデフォルトでOK
-		$acceptedMlProposals = Model_Ml_Proposal::find_list(array(
+		$accepted_ml_proposals = Model_Ml_Proposal::find_list(array(
 			Config::get('_query.filter_by')    => Config::get('_mlp.filter_by.status'),
 			Config::get('_query.filter_value') => Config::get('_mlp.status.accepted'),
 		));
 
-		$rejectedMlProposals = Model_Ml_Proposal::find_list(array(
+		$rejected_ml_proposals = Model_Ml_Proposal::find_list(array(
 			Config::get('_query.filter_by')    => Config::get('_mlp.filter_by.status'),
 			Config::get('_query.filter_value') => Config::get('_mlp.status.rejected'),
 		));
@@ -87,11 +87,11 @@ class Controller_Admin extends Controller_Template
 		$this->template->content = View::forge(
 			'admin/index',
 			array(
-				'new_count'        => number_format($newMlProposals[Config::get('_result_key.total_results')]),
-				'accepted_count'   => number_format($acceptedMlProposals[Config::get('_result_key.total_results')]),
-				'rejected_count'   => number_format($rejectedMlProposals[Config::get('_result_key.total_results')]),
-				'new_ml_proposals' => Helper::for_view_mlps($newMlProposals[Config::get('_result_key.ml_proposals')]),
-				'is_more'          => ($newMlProposals[Config::get('_result_key.total_results')] > 10),
+				'new_count'        => number_format($new_ml_proposals[Config::get('_result_key.total_results')]),
+				'accepted_count'   => number_format($accepted_ml_proposals[Config::get('_result_key.total_results')]),
+				'rejected_count'   => number_format($rejected_ml_proposals[Config::get('_result_key.total_results')]),
+				'new_ml_proposals' => Helper::for_view_mlps($new_ml_proposals[Config::get('_result_key.items')]),
+				'is_more'          => ($new_ml_proposals[Config::get('_result_key.total_results')] > 10),
 			)
 		);
 	}

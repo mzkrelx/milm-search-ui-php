@@ -75,7 +75,7 @@ return array(
 		'total_results'  => 'total_results',
 		'start_index'    => 'start_index',
 		'items_per_page' => 'items_per_page',
-		'ml_proposals'   => 'ml_proposals',
+		'items'          => 'items',
 	),
 
 );

@@ -115,9 +115,9 @@ class Controller_Apitest extends Controller_Rest
 			$stop_count = $total_results - $startIndex;
 		}
 
-		$ml_proposals['mlProposals'] = array();
+		$ml_proposals['items'] = array();
 		for ($i = 1; $i <= $stop_count; $i++) {
-			$ml_proposals['mlProposals'][] = array(
+			$ml_proposals['items'][] = array(
 				"id" => $i,
 				"proposerName" => "申請者の名前".$i,
 				"proposerEmail" => "申請者のメールアドレス".$i,
