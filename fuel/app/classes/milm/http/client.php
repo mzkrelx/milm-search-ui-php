@@ -90,7 +90,7 @@ class Http_Client
 
 		$http_client = new \Zend_Http_Client($url);
 		$http_client->setRawData($json, 'application/json')
-			->setHeaders(array('Content-Type' => '"appliction/json"; charset=utf-8'));
+			->setHeaders(array('Content-Type' => 'application/json'));
 
 		$response = $http_client->request('PUT');
 
@@ -110,7 +110,7 @@ class Http_Client
 	{
 		$http_client = new \Zend_Http_Client($url);
 		$http_client->setRawData(self::to_json($array), 'application/json')
-		->setHeaders(array('Content-Type' => '"appliction/json"; charset=utf-8'));
+		->setHeaders(array('Content-Type' => 'application/json'));
 
 		return $http_client->request('POST');
 	}

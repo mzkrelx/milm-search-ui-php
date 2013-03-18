@@ -90,7 +90,7 @@ class Model_Ml_Proposal
 
 		Log::info("New ML Proposal!\n".array_to_string($proposal));
 
-		Email_Admin::new_ml_proposal($proposal);
+		Email_Admin::new_ml_proposal($data);
 
 		$response = Http_Client::post_json(
 			Config::get('_api_root_url').'/'.
