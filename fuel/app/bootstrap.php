@@ -102,7 +102,7 @@ function array_get_or(array $array, $key, $else = "") {
  */
 function array_to_string(array $array) {
 	ob_start();
-	var_dump($arr);
+	var_dump($array);
 	$string = ob_get_contents();
 	ob_end_clean();
 
