@@ -5,6 +5,6 @@
 
 return array(
 	'_api_root_url' => "http://stage.milmsearch.org/api",
-	'_ml_proposals' => "mlproposals",
+	'_ml_proposals' => "ml-proposals",
 	'_mls' => "mls",
 );
