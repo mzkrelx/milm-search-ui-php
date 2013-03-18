@@ -108,16 +108,11 @@ class Http_Client
 	 */
 	public static function post_json($url, $array)
 	{
-		return self::create_send_json_client(
-			$url, self::to_json($array))->request('POST');
-	}
-
-	protected static function create_send_json_client($url, $json)
-	{
 		$http_client = new \Zend_Http_Client($url);
-		$http_client->setRawData($json, 'application/json')
+		$http_client->setRawData(self::to_json($array), 'application/json')
 		->setHeaders(array('Content-Type' => '"appliction/json"; charset=utf-8'));
-		return $http_client;
+
+		return $http_client->request('POST');
 	}
 
 	protected static function to_json(array $array)

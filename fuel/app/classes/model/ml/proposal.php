@@ -78,14 +78,25 @@ class Model_Ml_Proposal
 	 */
 	public static function propose($data)
 	{
-		Log::info("New ML Proposal!\n".array_to_string($data));
+		$proposal = array(
+			Config::get('_mlp.cols.proposer_name')  => $data['proposer_name'],
+			Config::get('_mlp.cols.proposer_email') => $data['proposer_email'],
+			Config::get('_mlp.cols.ml_title')       => $data['ml_title'],
+			Config::get('_mlp.cols.status')         => Config::get('_mlp.status.new'),
+			Config::get('_mlp.cols.archive_type')   => $data['archive_type'],
+			Config::get('_mlp.cols.archive_url')    => $data['archive_url'],
+			Config::get('_mlp.cols.comment')        => $data['comment'],
+		);
 
-		Email_Admin::new_ml_proposal($data);
+		Log::info("New ML Proposal!\n".array_to_string($proposal));
+
+		Email_Admin::new_ml_proposal($proposal);
 
 		$response = Http_Client::post_json(
 			Config::get('_api_root_url').'/'.
 			Config::get('_ml_proposals'),
-			$data);
+			$proposal
+		);
 
 		if ($response->getStatus() != 201) {
 			throw new Api_Unexpectedstatusexception(

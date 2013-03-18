@@ -36,6 +36,21 @@ return array(
 			'accepted' => 'accepted',
 			'rejected' => 'rejected',
 		),
+
+		'cols' => array(
+			'id'             => 'id',
+			'proposer_name'  => 'proposerName',
+			'proposer_email' => 'proposerEmail',
+			'ml_title'       => 'mlTitle',
+			'status'         => 'status',
+			'archive_type'   => 'archiveType',
+			'archive_url'    => 'archiveURL',
+			'comment'        => 'comment',
+			'created_at'     => 'createdAt',
+			'updated_at'     => 'updatedAt',
+			'judged_at'      => 'judgedAt',
+		),
+
 	),
 
 	/**
