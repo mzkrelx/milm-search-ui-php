@@ -137,7 +137,7 @@ class Model_Ml_Proposal
 		Http_Client::post(
 			Config::get('_api_root_url').'/'.
 			Config::get('_ml_proposals').'/'.$id.
-			'?accepted=true');
+			'?accept=true');
 
 		self::send_accept_mail($id);
 	}
@@ -205,7 +205,7 @@ class Model_Ml_Proposal
 		Http_Client::post(
 			Config::get('_api_root_url').'/'.
 			Config::get('_ml_proposals').'/'.$id.
-			'?accepted=false');
+			'?accept=false');
 
 		self::send_reject_mail($id);
 	}
