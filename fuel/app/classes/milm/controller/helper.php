@@ -138,6 +138,7 @@ class Controller_Helper
 			return false;
 		}
 	}
+
 	/**
 	 * POSTメソッドのアクセスかどうか判断します。
 	 *
