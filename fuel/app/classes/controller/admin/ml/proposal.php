@@ -164,11 +164,14 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 		$this->template->set_global('nav_status', $proposal['status']);
 
 		if (Helper::is_post()) {
-			$proposal['ml_title']     = Helper::get_param('ml_title', '');
-			$proposal['archive_type'] = Helper::get_param('archive_type', '');
-			$proposal['archive_u_r_l']  = Helper::get_param('archive_u_r_l', '');
+			$update_info[Config::get('_mlp.cols.ml_title')] =
+				Helper::get_param('ml_title', $proposal['ml_title']);
+			$update_info[Config::get('_mlp.cols.archive_type')] =
+				Helper::get_param('archive_type', $proposal['archive_type']);
+			$update_info[Config::get('_mlp.cols.archive_u_r_l')] =
+				Helper::get_param('archive_u_r_l', $proposal['archive_u_r_l']);
 
-			Model_Ml_Proposal::update($id, $this->to_update_proposal($proposal));
+			Model_Ml_Proposal::update($id, $update_info);
 
 			return Response::redirect('admin/ml/proposal/show/'.$id);
 		}
@@ -237,26 +240,6 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 				),
 			)
 		);
-	}
-
-	/**
-	 * ML登録申請情報をUPDATE用の配列に変換します。
-	 *
-	 * @param  array $proposal
-	 * @return array
-	 */
-	public function to_update_proposal($proposal)
-	{
-		if (isset($proposal['id'])) {
-			unset($proposal['id']);
-		}
-		if (isset($proposal['created_at'])) {
-			unset($proposal['created_at']);
-		}
-		if (isset($proposal['updated_at'])) {
-			unset($proposal['updated_at']);
-		}
-		return $proposal;
 	}
 
 	/**
