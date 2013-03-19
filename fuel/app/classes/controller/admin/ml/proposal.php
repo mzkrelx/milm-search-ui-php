@@ -166,7 +166,7 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 		if (Helper::is_post()) {
 			$proposal['ml_title']     = Helper::get_param('ml_title', '');
 			$proposal['archive_type'] = Helper::get_param('archive_type', '');
-			$proposal['archive_url']  = Helper::get_param('archive_url', '');
+			$proposal['archive_u_r_l']  = Helper::get_param('archive_u_r_l', '');
 
 			Model_Ml_Proposal::update($id, $this->to_update_proposal($proposal));
 

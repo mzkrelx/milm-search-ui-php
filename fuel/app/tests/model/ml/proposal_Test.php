@@ -158,7 +158,7 @@ class Test_Model_Ml_Proposal extends Fuel\Core\TestCase
 			"ml_title"       => "MilmSearch開発するよ！ML",
 			"status"        => "new",
 			"archive_type"   => "Mailman",
-			"archive_url"    => "http://aaa.com/arcieve.html",
+			"archive_u_r_l"    => "http://aaa.com/arcieve.html",
 			"comment"       => "よろしくお願いします！",
 		));
 	}
@@ -179,7 +179,7 @@ class Test_Model_Ml_Proposal extends Fuel\Core\TestCase
 			"ml_title"       => "MilmSearch開発するよ！ML",
 			"status"        => "new",
 			"archive_type"   => "Mailman",
-			"archive_url"    => "http://aaa.com/arcieve.html",
+			"archive_u_r_l"    => "http://aaa.com/arcieve.html",
 			"comment"       => "よろしくお願いします！",
 		));
 	}

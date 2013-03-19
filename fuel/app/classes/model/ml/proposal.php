@@ -79,13 +79,13 @@ class Model_Ml_Proposal
 	public static function propose($data)
 	{
 		$proposal = array(
-			Config::get('_mlp.cols.proposer_name')  => $data['proposer_name'],
-			Config::get('_mlp.cols.proposer_email') => $data['proposer_email'],
-			Config::get('_mlp.cols.ml_title')       => $data['ml_title'],
-			Config::get('_mlp.cols.status')         => Config::get('_mlp.status.new'),
-			Config::get('_mlp.cols.archive_type')   => $data['archive_type'],
-			Config::get('_mlp.cols.archive_url')    => $data['archive_url'],
-			Config::get('_mlp.cols.comment')        => $data['comment'],
+			Config::get('_mlp.cols.proposer_name')    => $data['proposer_name'],
+			Config::get('_mlp.cols.proposer_email')   => $data['proposer_email'],
+			Config::get('_mlp.cols.ml_title')         => $data['ml_title'],
+			Config::get('_mlp.cols.status')           => Config::get('_mlp.status.new'),
+			Config::get('_mlp.cols.archive_type')     => $data['archive_type'],
+			Config::get('_mlp.cols.archive_u_r_l')    => $data['archive_u_r_l'],
+			Config::get('_mlp.cols.comment')          => $data['comment'],
 		);
 
 		Log::info("New ML Proposal!\n".array_to_string($proposal));
@@ -184,10 +184,10 @@ class Model_Ml_Proposal
 	{
 		$mail_text_template = Config::get('_mail_accepted_text');
 
-		$mail_text = str_replace('__proposer_name__', $proposal['proposer_name'], $mail_text_template);
-		$mail_text = str_replace('__ml_title__',      $proposal['ml_title'],      $mail_text);
-		$mail_text = str_replace('__archive_url__',   $proposal['archive_url'],   $mail_text);
-		$mail_text = str_replace('__base_url__',      Config::get('base_url'),    $mail_text);
+		$mail_text = str_replace('__proposer_name__', $proposal['proposer_name'],   $mail_text_template);
+		$mail_text = str_replace('__ml_title__',      $proposal['ml_title'],        $mail_text);
+		$mail_text = str_replace('__archive_url__',   $proposal['archive_u_r_l'],   $mail_text);
+		$mail_text = str_replace('__base_url__',      Config::get('base_url'),      $mail_text);
 
 		return $mail_text;
 	}
@@ -252,10 +252,10 @@ class Model_Ml_Proposal
 	{
 		$mail_text_template = Config::get('_mail_rejected_text');
 
-		$mail_text = str_replace('__proposer_name__', $proposal['proposer_name'], $mail_text_template);
-		$mail_text = str_replace('__ml_title__',      $proposal['ml_title'],      $mail_text);
-		$mail_text = str_replace('__archive_url__',   $proposal['archive_url'],   $mail_text);
-		$mail_text = str_replace('__base_url__',      Config::get('base_url'),    $mail_text);
+		$mail_text = str_replace('__proposer_name__', $proposal['proposer_name'],   $mail_text_template);
+		$mail_text = str_replace('__ml_title__',      $proposal['ml_title'],        $mail_text);
+		$mail_text = str_replace('__archive_url__',   $proposal['archive_u_r_l'],   $mail_text);
+		$mail_text = str_replace('__base_url__',      Config::get('base_url'),      $mail_text);
 
 		return $mail_text;
 	}

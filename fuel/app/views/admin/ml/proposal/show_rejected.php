@@ -26,7 +26,7 @@
 		</tr>
 		<tr>
 			<th class="tune_th-250 tune_th-head">公開アーカイブURL</th>
-			<td><a href="<?php echo $proposal['archive_url'] ?>"><?php echo $proposal['archive_url'] ?></a><i class="tune_icon-ok pull-right"></i></td>
+			<td><a href="<?php echo $proposal['archive_u_r_l'] ?>"><?php echo $proposal['archive_u_r_l'] ?></a><i class="tune_icon-ok pull-right"></i></td>
 		</tr>
 		<tr>
 			<th class="tune_th-250 tune_th-head">アーカイブソフトタイプ</th>

@@ -28,7 +28,7 @@
 			</tr>
 			<tr>
 				<th class="tune_th-250 tune_th-head">メーリングリスト公開アーカイブのURL</th>
-				<td><?php echo $archive_url ?></td>
+				<td><?php echo $archive_u_r_l ?></td>
 			</tr>
 			<tr>
 				<th class="tune_th-250 tune_th-head">ご質問やコメントをどうぞ</th>
@@ -36,7 +36,7 @@
 			</tr>
 			</tbody>
 		</table>
-	
+
 		<div class="tune_stdecide">
 			<form class="desidebtn" action="<?php echo $base_url ?>ml/proposal/input" method="post">
 				<input type="submit" class="btn btn-large tune_btn-decide" name="modify" value="修正する">
@@ -45,11 +45,11 @@
 				<input type="hidden" name="proposer_email2" value="<?php echo $proposer_email2 ?>">
 				<input type="hidden" name="ml_title" value="<?php echo $ml_title ?>">
 				<input type="hidden" name="archive_type" value="<?php echo $archive_type ?>">
-				<input type="hidden" name="archive_url" value="<?php echo $archive_url ?>">
+				<input type="hidden" name="archive_u_r_l" value="<?php echo $archive_u_r_l ?>">
 				<input type="hidden" name="comment" value="<?php echo $comment ?>">
 				<input type="hidden" name="agreement" value="<?php echo $agreement ?>">
 			</form>
-	
+
 			<form class="desidebtn" action="<?php echo $base_url ?>ml/proposal/complete" method="post">
 				<input type="submit" class="btn btn-large btn-primary tune_btn-decide" value="申請する">
 				<input type="hidden" name="proposer_name" value="<?php echo $proposer_name ?>">
@@ -57,7 +57,7 @@
 				<input type="hidden" name="proposer_email2" value="<?php echo $proposer_email2 ?>">
 				<input type="hidden" name="ml_title" value="<?php echo $ml_title ?>">
 				<input type="hidden" name="archive_type" value="<?php echo $archive_type ?>">
-				<input type="hidden" name="archive_url" value="<?php echo $archive_url ?>">
+				<input type="hidden" name="archive_u_r_l" value="<?php echo $archive_u_r_l ?>">
 				<input type="hidden" name="comment" value="<?php echo $comment ?>">
 				<input type="hidden" name="agreement" value="<?php echo $agreement ?>">
 			</form>

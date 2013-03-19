@@ -48,7 +48,7 @@
 			</tr>
 			<tr>
 				<th class="tune_th-250 tune_th-head"><span class="text-error">【必須】</span>メーリングリスト公開アーカイブのURL</th>
-				<td><input type="url" name="archive_url" value="<?php echo array_get_or($inputs, 'archive_url') ?>"><?php if (isset($errors['archive_url'])): ?><span class="text-error">　※<?php echo $errors['archive_url'] ?></span><?php endif ?></td>
+				<td><input type="url" name="archive_u_r_l" value="<?php echo array_get_or($inputs, 'archive_u_r_l') ?>"><?php if (isset($errors['archive_u_r_l'])): ?><span class="text-error">　※<?php echo $errors['archive_u_r_l'] ?></span><?php endif ?></td>
 			</tr>
 			<tr>
 				<th class="tune_th-250 tune_th-head">ご質問やコメントをどうぞ</th>

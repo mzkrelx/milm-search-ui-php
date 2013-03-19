@@ -87,7 +87,7 @@ class Controller_Apitest extends Controller_Rest
 				"mlTitle" => "MilmSearch開発するよ！ML".$id,
 				"status" => $status,
 				"archiveType" => "Mailman",
-				"archiveUrl" => "http://aaa.com/arcieve.html",
+				"archiveURL" => "http://aaa.com/arcieve.html",
 				"comment" => "よろしくお願いします！",
 				"createdAt" => "2012-01-02T03:04:05+09:00",
 				"updatedAt" => "2012-11-12T13:14:15+09:00",
@@ -124,7 +124,7 @@ class Controller_Apitest extends Controller_Rest
 				"mlTitle" => "MLタイトル(ML名)".$i,
 				"status" => $status,
 				"archiveType" => "メールアーカイブの種類(ex. mailman)",
-				"archiveUrl" => "http://xxx",
+				"archiveURL" => "http://xxx",
 				"comment" => "コメント(MLの説明など).$i",
 				"createdAt" => "2012-01-02T03:04:05+09:00",
 				"updatedAt" => "2012-11-12T13:14:15+09:00",
@@ -187,7 +187,7 @@ class Controller_Apitest extends Controller_Rest
 				"mlTitle" => "MLタイトル(ML名)",
 				"status" => "new",
 				"archiveType" => "メールアーカイブの種類(ex. mailman)",
-				"archiveUrl" => "メールアーカイブの基底URL",
+				"archiveURL" => "メールアーカイブの基底URL",
 				"comment" => "コメント(MLの説明など)"
 			), 200);
 			return;
@@ -201,7 +201,7 @@ class Controller_Apitest extends Controller_Rest
 					"mlTitle" => "MLタイトル(ML名)",
 					"status" => "new",
 					"archiveType" => "メールアーカイブの種類(ex. mailman)",
-					"archiveUrl" => "メールアーカイブの基底URL",
+					"archiveURL" => "メールアーカイブの基底URL",
 					"comment" => "コメント(MLの説明など)"
 				),
 				array(
@@ -211,7 +211,7 @@ class Controller_Apitest extends Controller_Rest
 					"mlTitle" => "MLタイトル(ML名)",
 					"status" => "new",
 					"archiveType" => "メールアーカイブの種類(ex. mailman)",
-					"archiveUrl" => "メールアーカイブの基底URL",
+					"archiveURL" => "メールアーカイブの基底URL",
 					"comment" => "コメント(MLの説明など)"
 				),
 			),

@@ -11,7 +11,7 @@
 		</tr>
 		<tr>
 			<th class="tune_th-250 tune_th-head">公開アーカイブURL</th>
-			<td><input type="url" name="archive_url" value="<?php echo $proposal['archive_url']?>"></td>
+			<td><input type="url" name="archive_u_r_l" value="<?php echo $proposal['archive_u_r_l']?>"></td>
 		</tr>
 		<tr>
 			<th class="tune_th-250 tune_th-head">アーカイブソフトタイプ</th>

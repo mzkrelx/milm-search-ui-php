@@ -130,7 +130,7 @@ class Test_Controller_Helper extends Fuel\Core\TestCase
 			"ml_title"       => "MilmSearch開発するよ！ML",
 			"status"        => "new",
 			"archive_type"   => "Mailman",
-			"archive_url"    => "http://aaa.com/arcieve.html",
+			"archive_u_r_l"    => "http://aaa.com/arcieve.html",
 			"comment"       => "よろしくお願いします！",
 			"created_at"     => "2012-01-02T03:04:05+09:00",
 			"updated_at"     => "2012-11-12T13:14:15+09:00",
@@ -142,7 +142,7 @@ class Test_Controller_Helper extends Fuel\Core\TestCase
 		$this->assertSame("MilmSearch開発するよ！ML", $actual['ml_title']);
 		$this->assertSame("new", $actual['status']);
 		$this->assertSame("Mailman", $actual['archive_type']);
-		$this->assertSame("http://aaa.com/arcieve.html", $actual['archive_url']);
+		$this->assertSame("http://aaa.com/arcieve.html", $actual['archive_u_r_l']);
 		$this->assertSame("よろしくお願いします！", $actual['comment']);
 		$this->assertSame("2012/01/02", $actual['created_at']);
 		$this->assertSame("2012/11/12", $actual['updated_at']);
@@ -160,7 +160,7 @@ class Test_Controller_Helper extends Fuel\Core\TestCase
 			"ml_title"       => "MilmSearch開発するよ！ML",
 			"status"        => "new",
 			"archive_type"   => "Mailman",
-			"archive_url"    => "http://aaa.com/arcieve.html",
+			"archive_u_r_l"    => "http://aaa.com/arcieve.html",
 			"comment"       => "よろしくお願いします！",
 			"created_at"     => "2012-01-02T03:04:05+09:00",
 			"updated_at"     => "2012-11-12T13:14:15+09:00",
@@ -185,7 +185,7 @@ class Test_Controller_Helper extends Fuel\Core\TestCase
 		        "ml_title" => "MLタイトル(ML名)".$i,
 		        "status" => "new",
 		        "archive_type" => "メールアーカイブの種類(ex. mailman)",
-		        "archive_url" => "http://xxx",
+		        "archive_u_r_l" => "http://xxx",
 		        "comment" => "コメント(MLの説明など).$i",
 		        "created_at" => "2012-01-02T03:04:05+09:00",
 		        "updated_at" => "2012-11-12T13:14:15+09:00",
@@ -213,7 +213,7 @@ class Test_Controller_Helper extends Fuel\Core\TestCase
 		        "ml_title" => "MLタイトル(ML名)".$i,
 		        "status" => "new",
 		        "archive_type" => "メールアーカイブの種類(ex. mailman)",
-		        "archive_url" => "http://xxx",
+		        "archive_u_r_l" => "http://xxx",
 		        "comment" => "コメント(MLの説明など).$i",
 		        "created_at" => "2012-01-02T03:04:05+09:00",
 		        "updated_at" => "2012-11-12T13:14:15+09:00",

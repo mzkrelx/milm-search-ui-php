@@ -34,14 +34,18 @@ require_once 'Zend/Date.php';
 
 class Controller_Helper
 {
-	public static $default_ml_proposals_cols = array('id', 'created_at', 'ml_title');
+	public static $default_ml_proposals_cols = array(
+		'id',
+		'created_at',
+		'ml_title',
+	);
 	public static $default_ml_proposal_cols = array(
 		'proposer_name',
 		'proposer_email',
 		'ml_title',
 		'status',
 		'archive_type',
-		'archive_url',
+		'archive_u_r_l',
 		'comment',
 		'created_at',
 		'updated_at',

@@ -53,9 +53,8 @@ class Http_Client
 		if ($response->isError()) {
 		    throw new HttpServerErrorException();
 		}
-
 		$array = Format::forge(Unicode::decode($response->getBody()), 'json')->to_array();
-		return self::toSnakeKey($array);
+		return self::to_snake_key($array);
 	}
 
 	/**
@@ -64,17 +63,17 @@ class Http_Client
 	 * @param  array $array 変換する配列
 	 * @return array
 	 */
-	private static function toSnakeKey(array $array) {
-		$snakeArray = array();
+	private static function to_snake_key(array $array) {
+		$snake_array = array();
 		foreach ($array as $key => $val) {
 			if (is_array($val)) {
-				$snakeVal = self::toSnakeKey($val);
-				$snakeArray[snake_case($key)] = $snakeVal;
+				$snake_val = self::to_snake_key($val);
+				$snake_array[snake_case($key)] = $snake_val;
 			} else {
-				$snakeArray[snake_case($key)] = $val;
+				$snake_array[snake_case($key)] = $val;
 			}
 		}
-		return $snakeArray;
+		return $snake_array;
 	}
 
 	/**

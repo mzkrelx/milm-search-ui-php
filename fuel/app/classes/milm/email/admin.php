@@ -52,7 +52,7 @@ class Email_Admin
 			"新しいML登録申請です。\n".
 			"\n".
 			"【メーリングリスト情報】\n".
-			"・公開アーカイブURL：".$proposal['archive_url']."\n".
+			"・公開アーカイブURL：".$proposal['archive_u_r_l']."\n".
 			"・アーカイブソフトタイプ：".$proposal['archive_type']."\n".
 			"・MLタイトル：".$proposal['ml_title']."\n".
 			"\n".

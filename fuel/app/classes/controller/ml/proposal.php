@@ -130,7 +130,7 @@ class Controller_Ml_Proposal extends Controller_Template
 		->add_rule('required')
 		->add_rule('max_length', 100);
 
-		$form->add('archive_url', 'メーリングリスト公開アーカイブのURL')
+		$form->add('archive_u_r_l', 'メーリングリスト公開アーカイブのURL')
 		->add_rule('trim')
 		->add_rule('required')
 		->add_rule('max_length', 200)
