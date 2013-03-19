@@ -11,7 +11,7 @@
 			<a class="btn btn-primary" href="<?php echo $base_url ?>top/help">ヘルプ</a>
 		</p>
 		</nav>
-	
+
 		<form action="<?php echo $base_url ?>ml/proposal/confirm" method="post">
 			<table class="table table-bordered">
 			<tbody>
@@ -32,12 +32,12 @@
 				<td><input type="text" name="ml_title" value="<?php echo array_get_or($inputs, 'ml_title') ?>"><?php if (isset($errors['ml_title'])): ?><span class="text-error">　※<?php echo $errors['ml_title'] ?></span><?php endif ?></td>
 			</tr>
 			<tr>
-				<th class="tune_th-250 tune_th-head"><span class="text-error">【必須】</span>メーリングリストのアーカイブソフトタイプ</td>
+				<th class="tune_th-250 tune_th-head"><span class="text-error">【必須】</span>メーリングリストのアーカイブソフトタイプ</th>
 				<td>
 					<select name="archive_type">
 						<option value="">選択してください</option>
-						<option value="<?php echo Config::get('_ml_archive_type.mailman_label') ?>"<?php if (array_get_or($inputs, 'archive_type') === Config::get('_ml_archive_type.mailman_label')) echo ' selected'?>><?php echo Config::get('_ml_archive_type.mailman_label') ?></option>
-						<option value="<?php echo Config::get('_ml_archive_type.other_label') ?>"<?php if (array_get_or($inputs, 'archive_type') === Config::get('_ml_archive_type.other_label')) echo ' selected'?>><?php echo Config::get('_ml_archive_type.other_label') ?></option>
+						<option value="<?php echo Config::get('_ml_archive_type.mailman') ?>"<?php if (array_get_or($inputs, 'archive_type') === Config::get('_ml_archive_type.mailman')) echo ' selected'?>><?php echo Config::get('_ml_archive_type.mailman_label') ?></option>
+						<option value="<?php echo Config::get('_ml_archive_type.other') ?>"<?php if (array_get_or($inputs, 'archive_type') === Config::get('_ml_archive_type.other')) echo ' selected'?>><?php echo Config::get('_ml_archive_type.other_label') ?></option>
 						<option value="不明"<?php if (array_get_or($inputs, 'archive_type') === '不明') echo ' selected'?>>不明</option>
 					</select>
 					<?php if (isset($errors['archive_type'])): ?><span class="text-error">　※<?php echo $errors['archive_type'] ?></span><?php endif ?>
@@ -67,5 +67,5 @@
 				<input class="btn btn-large btn-primary tune_btn-decide" type="submit" value="確認する">
 			</div>
 		</form>
-	
+
 	</section>
