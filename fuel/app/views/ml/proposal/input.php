@@ -38,12 +38,11 @@
 						<option value="">選択してください</option>
 						<option value="<?php echo Config::get('_ml_archive_type.mailman') ?>"<?php if (array_get_or($inputs, 'archive_type') === Config::get('_ml_archive_type.mailman')) echo ' selected'?>><?php echo Config::get('_ml_archive_type.mailman_label') ?></option>
 						<option value="<?php echo Config::get('_ml_archive_type.other') ?>"<?php if (array_get_or($inputs, 'archive_type') === Config::get('_ml_archive_type.other')) echo ' selected'?>><?php echo Config::get('_ml_archive_type.other_label') ?></option>
-						<option value="不明"<?php if (array_get_or($inputs, 'archive_type') === '不明') echo ' selected'?>>不明</option>
 					</select>
 					<?php if (isset($errors['archive_type'])): ?><span class="text-error">　※<?php echo $errors['archive_type'] ?></span><?php endif ?>
 					<p><small>
 						「その他」のソフトをご利用の方は、コメント欄にソフト名をご記入ください。<br>
-						今後の参考にさせていただきます。
+						今後の参考にさせていただきます。わからない場合は「その他」を選択してください。
 					</small></p>
 				</td>
 			</tr>
