@@ -86,7 +86,7 @@ class Controller_Apitest extends Controller_Rest
 				"proposerEmail" => "example@sample.com",
 				"mlTitle" => "MilmSearch開発するよ！ML".$id,
 				"status" => $status,
-				"archiveType" => "Mailman",
+				"archiveType" => "mailman",
 				"archiveURL" => "http://aaa.com/arcieve.html",
 				"comment" => "よろしくお願いします！",
 				"createdAt" => "2012-01-02T03:04:05+09:00",

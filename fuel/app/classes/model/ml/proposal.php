@@ -118,6 +118,8 @@ class Model_Ml_Proposal
 	 */
 	public static function update($id, $data)
 	{
+		Log::info("Update ML Proposal! id=[{$id}]\n".array_to_string($data));
+
 		Http_Client::put_json(
 			Config::get('_api_root_url').'/'.
 			Config::get('_ml_proposals').'/'.$id,

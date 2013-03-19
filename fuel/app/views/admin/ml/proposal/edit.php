@@ -17,8 +17,8 @@
 			<th class="tune_th-250 tune_th-head">アーカイブソフトタイプ</th>
 			<td>
 				<select name="archive_type">
-				<?php foreach ($archive_type_options as $id => $label) : ?>
-					<option value="<?php echo $id ?>"><?php echo $label ?></option>
+				<?php foreach ($archive_type_options as $value => $label) : ?>
+					<option value="<?php echo $value ?>"<?php if ($proposal['archive_type'] === $value) echo ' selected="selected"' ?>><?php echo $label ?></option>
 				<?php endforeach ?>
 				</select>
 				<p><small>「その他」の場合、ソフト名等の注記はML詳細画面から管理者コメントに追記してください。</small></p>

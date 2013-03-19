@@ -30,6 +30,8 @@
  */
 namespace Milm;
 
+use Fuel\Core\Config;
+
 require_once 'Zend/Date.php';
 
 class Controller_Helper
@@ -117,11 +119,25 @@ class Controller_Helper
 				$date = new \Zend_Date($val, \Zend_Date::ISO_8601);
 				$val = $date->toString('y/MM/dd');
 			}
+			if ('archive_type' === $col) {
+				$val = self::to_archive_type_label($val);
+			}
 			$for_view_mlp[$col] = $val;
 		}
 		return $for_view_mlp;
 	}
 
+	public static function to_archive_type_label($archive_type)
+	{
+		switch ($archive_type) {
+		case Config::get('_ml_archive_type.mailman') :
+			return Config::get('_ml_archive_type.mailman_label');
+		case Config::get('_ml_archive_type.other') :
+			return Config::get('_ml_archive_type.other_label');
+		default :
+			return false;
+		}
+	}
 	/**
 	 * POSTメソッドのアクセスかどうか判断します。
 	 *
