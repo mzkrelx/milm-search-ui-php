@@ -182,8 +182,8 @@ class Controller_Apitest extends Controller_Rest
 			}
 			$this->response(array(
 				"id" => $id,
-				"title" => "MLタイトル(ML名)",
-				"archive_type" => "メールアーカイブの種類(ex. mailman)",
+				"title" => "MLタイトル(ML名)".$id,
+				"archive_type" => "mailman",
 				"archive_u_r_l" => "http://aaa.com/archieve.html",
 				"last_mailed_at" => "2012-01-02T03:04:05+09:00",
 				"comment" => "コメント(MLの説明など)"
