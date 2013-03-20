@@ -16,7 +16,7 @@
 					<h5><a href="<?php echo $ml['archive_u_r_l'] ?>"><?php echo $ml['title'] ?></a></h5>
 					<a href="<?php echo $ml['archive_u_r_l'] ?>"><?php echo $ml['archive_u_r_l'] ?></a>
 				</td>
-				<td class="tune_table_date"><?php echo $ml['last_mailed_at'] ?>更新</td>
+				<td class="tune_table_date"><?php echo ($ml['last_mailed_at'] === null) ? '更新なし' : $ml['last_mailed_at'].'更新' ?></td>
 			</tr>
 		<?php endforeach ?>
 		</tbody>

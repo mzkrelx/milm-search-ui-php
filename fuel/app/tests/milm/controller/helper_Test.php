@@ -128,10 +128,10 @@ class Test_Controller_Helper extends Fuel\Core\TestCase
 			"proposer_name"  => "みるむ太郎",
 			"proposer_email" => "example@sample.com",
 			"ml_title"       => "MilmSearch開発するよ！ML",
-			"status"        => "new",
-			"archive_type"   => "Mailman",
-			"archive_u_r_l"    => "http://aaa.com/arcieve.html",
-			"comment"       => "よろしくお願いします！",
+			"status"         => "new",
+			"archive_type"   => "mailman",
+			"archive_u_r_l"  => "http://aaa.com/archive.html",
+			"comment"        => "よろしくお願いします！",
 			"created_at"     => "2012-01-02T03:04:05+09:00",
 			"updated_at"     => "2012-11-12T13:14:15+09:00",
 		);
@@ -142,7 +142,7 @@ class Test_Controller_Helper extends Fuel\Core\TestCase
 		$this->assertSame("MilmSearch開発するよ！ML", $actual['ml_title']);
 		$this->assertSame("new", $actual['status']);
 		$this->assertSame("Mailman", $actual['archive_type']);
-		$this->assertSame("http://aaa.com/arcieve.html", $actual['archive_u_r_l']);
+		$this->assertSame("http://aaa.com/archive.html", $actual['archive_u_r_l']);
 		$this->assertSame("よろしくお願いします！", $actual['comment']);
 		$this->assertSame("2012/01/02", $actual['created_at']);
 		$this->assertSame("2012/11/12", $actual['updated_at']);
@@ -158,10 +158,10 @@ class Test_Controller_Helper extends Fuel\Core\TestCase
 			"proposer_name"  => "みるむ太郎",
 			"proposer_email" => "example@sample.com",
 			"ml_title"       => "MilmSearch開発するよ！ML",
-			"status"        => "new",
-			"archive_type"   => "Mailman",
-			"archive_u_r_l"    => "http://aaa.com/arcieve.html",
-			"comment"       => "よろしくお願いします！",
+			"status"         => "new",
+			"archive_type"   => "mailman",
+			"archive_u_r_l"  => "http://aaa.com/archive.html",
+			"comment"        => "よろしくお願いします！",
 			"created_at"     => "2012-01-02T03:04:05+09:00",
 			"updated_at"     => "2012-11-12T13:14:15+09:00",
 		);
@@ -180,15 +180,15 @@ class Test_Controller_Helper extends Fuel\Core\TestCase
 		for ($i = 1; $i <= 20; $i++) {
 		    $ml_proposals['ml_proposals'][] = array(
 		        "id" => $i,
-		        "proposer_name" => "申請者の名前".$i,
+		        "proposer_name"  => "申請者の名前".$i,
 		        "proposer_email" => "申請者のメールアドレス".$i,
-		        "ml_title" => "MLタイトル(ML名)".$i,
-		        "status" => "new",
-		        "archive_type" => "メールアーカイブの種類(ex. mailman)",
-		        "archive_u_r_l" => "http://xxx",
-		        "comment" => "コメント(MLの説明など).$i",
-		        "created_at" => "2012-01-02T03:04:05+09:00",
-		        "updated_at" => "2012-11-12T13:14:15+09:00",
+		        "ml_title"       => "MLタイトル(ML名)".$i,
+		        "status"         => "new",
+		        "archive_type"   => "メールアーカイブの種類(ex. mailman)",
+		        "archive_u_r_l"  => "http://xxx",
+		        "comment"        => "コメント(MLの説明など).$i",
+		        "created_at"     => "2012-01-02T03:04:05+09:00",
+		        "updated_at"     => "2012-11-12T13:14:15+09:00",
 		    );
 		}
 
@@ -208,15 +208,15 @@ class Test_Controller_Helper extends Fuel\Core\TestCase
 		for ($i = 1; $i <= 20; $i++) {
 		    $ml_proposals['ml_proposals'][] = array(
 		        "id" => $i,
-		        "proposer_name" => "申請者の名前".$i,
+		        "proposer_name"  => "申請者の名前".$i,
 		        "proposer_email" => "申請者のメールアドレス".$i,
-		        "ml_title" => "MLタイトル(ML名)".$i,
-		        "status" => "new",
-		        "archive_type" => "メールアーカイブの種類(ex. mailman)",
-		        "archive_u_r_l" => "http://xxx",
-		        "comment" => "コメント(MLの説明など).$i",
-		        "created_at" => "2012-01-02T03:04:05+09:00",
-		        "updated_at" => "2012-11-12T13:14:15+09:00",
+		        "ml_title"       => "MLタイトル(ML名)".$i,
+		        "status"         => "new",
+		        "archive_type"   => "メールアーカイブの種類(ex. mailman)",
+		        "archive_u_r_l"  => "http://xxx",
+		        "comment"        => "コメント(MLの説明など).$i",
+		        "created_at"     => "2012-01-02T03:04:05+09:00",
+		        "updated_at"     => "2012-11-12T13:14:15+09:00",
 		    );
 		}
 
@@ -224,6 +224,46 @@ class Test_Controller_Helper extends Fuel\Core\TestCase
 		$this->assertSame("MLタイトル(ML名)1", $actual[0]['ml_title']);
 		$this->assertEquals(20, sizeof($actual));
 		$this->assertEquals(1, sizeof($actual[0]));
+	}
+
+	/**
+	 * ML情報をビュー用に変換するテスト。デフォルトのカラムで。
+	 */
+	public function test_for_view_ml()
+	{
+		$mls = array(array(
+			"id"             => 1,
+			"title"          => "MLタイトル(ML名)",
+			"archive_type"   => "mailman",
+			"archive_u_r_l"  => "http://aaa.com/archieve.html",
+			"last_mailed_at" => "2012-01-02T03:04:05+09:00",
+		));
+		$actual = Controller_Helper::for_view_mls($mls);
+
+		$this->assertEquals(1, $actual[0]['id']);
+		$this->assertSame("MLタイトル(ML名)", $actual[0]['title']);
+		$this->assertSame("http://aaa.com/archieve.html", $actual[0]['archive_u_r_l']);
+		$this->assertSame("2012/01/02", $actual[0]['last_mailed_at']);
+	}
+
+	/**
+	 * ML情報をビュー用に変換するテスト。デフォルトのカラムで。最終投稿日時がnull。
+	 */
+	public function test_for_view_ml_last_mailed_at_is_null()
+	{
+		$mls = array(array(
+			"id"             => 1,
+			"title"          => "MLタイトル(ML名)",
+			"archive_type"   => "mailman",
+			"archive_u_r_l"  => "http://aaa.com/archieve.html",
+			"last_mailed_at" => null,
+		));
+		$actual = Controller_Helper::for_view_mls($mls);
+
+		$this->assertEquals(1, $actual[0]['id']);
+		$this->assertSame("MLタイトル(ML名)", $actual[0]['title']);
+		$this->assertSame("http://aaa.com/archieve.html", $actual[0]['archive_u_r_l']);
+		$this->assertSame(null, $actual[0]['last_mailed_at']);
 	}
 
 	/**

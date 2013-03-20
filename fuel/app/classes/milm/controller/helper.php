@@ -54,10 +54,10 @@ class Controller_Helper
 	);
 
 	public static $default_mls_cols = array(
-			'id',
-			'title',
-			'archive_u_r_l',
-			'last_mailed_at',
+		'id',
+		'title',
+		'archive_u_r_l',
+		'last_mailed_at',
 	);
 
 	/**
@@ -123,8 +123,10 @@ class Controller_Helper
 		foreach ($cols as $col) {
 			$val = $ml_proposal[$col];
 			if ('created_at' === $col or 'updated_at' === $col) {
-				$date = new \Zend_Date($val, \Zend_Date::ISO_8601);
-				$val = $date->toString('y/MM/dd');
+				if ($val != null) {
+					$date = new \Zend_Date($val, \Zend_Date::ISO_8601);
+					$val = $date->toString('y/MM/dd');
+				}
 			}
 			if ('archive_type' === $col) {
 				$val = self::to_archive_type_label($val);
@@ -161,8 +163,10 @@ class Controller_Helper
 			if ('last_mailed_at' === $col or
 				'created_at'     === $col or
 				'updated_at'     === $col) {
-				$date = new \Zend_Date($val, \Zend_Date::ISO_8601);
-				$val = $date->toString('y/MM/dd');
+				if ($val != null) {
+					$date = new \Zend_Date($val, \Zend_Date::ISO_8601);
+					$val = $date->toString('y/MM/dd');
+				}
 			}
 			if ('archive_type' === $col) {
 				$val = self::to_archive_type_label($val);
