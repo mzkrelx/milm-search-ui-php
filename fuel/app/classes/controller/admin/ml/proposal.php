@@ -99,7 +99,9 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 		Pagination::set_config(array(
 			'pagination_url' => 'admin/ml/proposal/list/'.$status,
 			'total_items'    => $results[Config::get('_result_key.total_results')],
-			'uri_segment'    => 6
+			'uri_segment'    => 6,
+			'per_page'       => self::DEFAULT_LIST_COUNT,
+			'current_page'   => $page,
 		));
 
 		$this->template->set_global('nav_status', $status);
@@ -108,7 +110,7 @@ class Controller_Admin_Ml_Proposal extends Controller_Template
 			array(
 				// TODO 承認済みと却下済みで承認日/却下日ができるようになったら、for_view_mlps の第2引数に表示項目追加
 				'ml_proposals' => Helper::for_view_mlps($results[Config::get('_result_key.items')]),
-				'per_page'     => get_bigger(Pagination::$per_page, sizeof($results[Config::get('_result_key.items')])),
+				'per_page'     => sizeof($results[Config::get('_result_key.items')]),
 				'total_items'  => $results[Config::get('_result_key.total_results')],
 			)
 		);
