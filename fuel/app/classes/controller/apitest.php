@@ -182,40 +182,46 @@ class Controller_Apitest extends Controller_Rest
 			}
 			$this->response(array(
 				"id" => $id,
-				"proposerName" => "申請者の名前",
-				"proposerEmail" => "申請者のメールアドレス",
-				"mlTitle" => "MLタイトル(ML名)",
-				"status" => "new",
-				"archiveType" => "メールアーカイブの種類(ex. mailman)",
-				"archiveURL" => "メールアーカイブの基底URL",
+				"title" => "MLタイトル(ML名)",
+				"archive_type" => "メールアーカイブの種類(ex. mailman)",
+				"archive_u_r_l" => "http://aaa.com/archieve.html",
+				"last_mailed_at" => "2012-01-02T03:04:05+09:00",
 				"comment" => "コメント(MLの説明など)"
 			), 200);
 			return;
 		}
-		$this->response(array(
-			'mls' => array(
-				array(
-					"id" => 1,
-					"proposerName" => "申請者の名前",
-					"proposerEmail" => "申請者のメールアドレス",
-					"mlTitle" => "MLタイトル(ML名)",
-					"status" => "new",
-					"archiveType" => "メールアーカイブの種類(ex. mailman)",
-					"archiveURL" => "メールアーカイブの基底URL",
-					"comment" => "コメント(MLの説明など)"
-				),
-				array(
-					"id" => 2,
-					"proposerName" => "申請者の名前",
-					"proposerEmail" => "申請者のメールアドレス",
-					"mlTitle" => "MLタイトル(ML名)",
-					"status" => "new",
-					"archiveType" => "メールアーカイブの種類(ex. mailman)",
-					"archiveURL" => "メールアーカイブの基底URL",
-					"comment" => "コメント(MLの説明など)"
-				),
-			),
-		), 200);
+
+		$count = array_get_or($_GET, Config::get('_query.count'), 10);
+		$page = array_get_or($_GET, Config::get('_query.start_page'), 1);
+
+		$startIndex = 1;
+		if ($page > 1) {
+			$startIndex = ($page - 1) * $count;
+		}
+
+		$total_results = 24;
+		$mls_result = array();
+		$mls_result[Config::get('_result_key.total_results')]  = $total_results;
+		$mls_result[Config::get('_result_key.start_index')]    = $startIndex;
+		$mls_result[Config::get('_result_key.items_per_page')] = $count;
+
+		$stop_count = $count;
+		if (($total_results - $startIndex) < $count) {
+			$stop_count = $total_results - $startIndex;
+		}
+
+		$mls_result['items'] = array();
+		for ($i = 1; $i <= $stop_count; $i++) {
+			$mls_result['items'][] = array(
+				"id" => $i,
+				"title" => "MLタイトル(ML名)".$i,
+				"archive_type" => "mailman",
+				"archive_u_r_l" => "http://aaa.com/archieve.html",
+				"last_mailed_at" => "2012-01-02T03:04:05+09:00",
+				"comment" => "コメント(MLの説明など)"
+			);
+		}
+		$this->response($mls_result, 200);
 	}
 
 }

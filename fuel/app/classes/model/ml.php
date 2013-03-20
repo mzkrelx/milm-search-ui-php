@@ -29,6 +29,7 @@
  * @copyright  Copyright (C) 2013 MilmSearch Project
  */
 use Milm\Http_Client;
+use Milm\Http_Utils;
 
 use Model\Http\Client;
 
@@ -41,7 +42,7 @@ class Model_Ml
 		// TODO 例外処理
 		return Http_Client::get_array(
 			Config::get('_api_root_url').'/'.
-			Config::get('_mls')
+			Config::get('_mls').Http_Utils::make_query_string($cond)
 		);
 	}
 

@@ -53,6 +53,13 @@ class Controller_Helper
 		'updated_at',
 	);
 
+	public static $default_mls_cols = array(
+			'id',
+			'title',
+			'archive_u_r_l',
+			'last_mailed_at',
+	);
+
 	/**
 	 * GET もしくは POST のパラメータを取得します。URLパラメータは取得できません。
 	 *
@@ -125,6 +132,44 @@ class Controller_Helper
 			$for_view_mlp[$col] = $val;
 		}
 		return $for_view_mlp;
+	}
+
+	/**
+	 * MLの配列をビュー用に変換します。
+	 *
+	 * @param  array $mls ML情報
+	 * @param  array $cols 表示する項目名。これに入っていないカラムは戻り値に含まれません。
+	 * @return array
+	 */
+	public static function for_view_mls($mls, $cols = array())
+	{
+		if (empty($cols)) {
+			$cols = self::$default_mls_cols;
+		}
+		$for_views = array();
+		foreach ($mls as $ml) {
+			$for_views[] = self::create_for_view_ml($ml, $cols);
+		}
+		return $for_views;
+	}
+
+	private static function create_for_view_ml($ml, $cols)
+	{
+		$for_view_ml = array();
+		foreach ($cols as $col) {
+			$val = $ml[$col];
+			if ('last_mailed_at' === $col or
+				'created_at'     === $col or
+				'updated_at'     === $col) {
+				$date = new \Zend_Date($val, \Zend_Date::ISO_8601);
+				$val = $date->toString('y/MM/dd');
+			}
+			if ('archive_type' === $col) {
+				$val = self::to_archive_type_label($val);
+			}
+			$for_view_ml[$col] = $val;
+		}
+		return $for_view_ml;
 	}
 
 	public static function to_archive_type_label($archive_type)

@@ -29,6 +29,7 @@
  * @copyright  Copyright (C) 2013 MilmSearch Project
  */
 use Model\Ml;
+use Milm\Controller_Helper as Helper;
 
 use Fuel\Core\HttpNotFoundException;
 
@@ -37,6 +38,8 @@ use Fuel\Core\HttpNotFoundException;
  */
 class Controller_Ml extends Controller_Template
 {
+	/** リストの1ページの表示数 */
+	const DEFAULT_LIST_COUNT = 10;
 
 	/**
 	 * (non-PHPdoc)
@@ -63,13 +66,34 @@ class Controller_Ml extends Controller_Template
 	 *
 	 * @return void
 	 */
-	public function action_list()
+	public function action_list($page = 1)
 	{
+		if (!is_numeric($page)) {
+			throw new HttpNotFoundException();
+		}
+
 		$this->template->set_global('title', 'ML一覧 : Milm Search');
 
-		$mls = Model_Ml::find_list(array());
+		$results = Model_Ml::find_list(array(
+			Config::get('_query.start_page')   => $page,
+			Config::get('_query.count')        => self::DEFAULT_LIST_COUNT)
+		);
 
-		$this->template->content = View::forge('ml/list', array('mls' => $mls['items']));
+		Pagination::set_config(array(
+			'pagination_url' => 'ml/list',
+			'total_items'    => $results[Config::get('_result_key.total_results')],
+			'uri_segment'    => 3,
+			'per_page'       => self::DEFAULT_LIST_COUNT,
+			'current_page'   => $page,
+		));
+
+		$this->template->content = View::forge('ml/list',
+			array(
+				'mls' => Helper::for_view_mls($results[Config::get('_result_key.items')]),
+				'per_page'     => sizeof($results[Config::get('_result_key.items')]),
+				'total_items'  => $results[Config::get('_result_key.total_results')],
+			)
+		);
 	}
 
 	/**
