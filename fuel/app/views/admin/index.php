@@ -12,9 +12,9 @@
 		</div>
 		<nav>
 			<ul class="unstyled">
-				<li><a href="<?php echo $base_url ?>admin/ml/proposal/list?status=new">審査待ちML一覧</a></li>
-				<li><a href="<?php echo $base_url ?>admin/ml/proposal/list?status=accepted">承認済みML一覧</a></li>
-				<li><a href="<?php echo $base_url ?>admin/ml/proposal/list?status=rejected">却下済みML一覧</a></li>
+				<li><a href="<?php echo $base_url ?>admin/ml/proposal/list/new">審査待ちML一覧</a></li>
+				<li><a href="<?php echo $base_url ?>admin/ml/proposal/list/accepted">承認済みML一覧</a></li>
+				<li><a href="<?php echo $base_url ?>admin/ml/proposal/list/rejected">却下済みML一覧</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -38,7 +38,7 @@
 	</table>
 <?php if ($is_more): ?>
 	<nav>
-		<a class="btn btn-primary pull-right" href="<?php echo $base_url ?>admin/ml/proposal/list?status=new">審査待ちML一覧</a>
+		<a class="btn btn-primary pull-right" href="<?php echo $base_url ?>admin/ml/proposal/list/new">審査待ちML一覧</a>
 	</nav>
 <?php endif ?>
 </section>
