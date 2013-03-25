@@ -1,7 +1,7 @@
-/.buildpath
-/.project
-/.settings/
-/*.swp
-/report
+.buildpath
+.project
+.settings/
+*.swp
+report
 *.DS_Store
-/fuel/app/logs/*
+fuel/app/logs/*
