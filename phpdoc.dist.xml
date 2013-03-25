@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+    <title>milm-search-ui-php</title>
+    <parser>
+        <target>docs</target>
+        <markers>
+            <item>TODO</item>
+            <item>FIXME</item>
+        </markers>
+        <extensions>
+            <extension>php</extension>
+            <extension>php3</extension>
+            <extension>phtml</extension>
+        </extensions>
+        <visibility></visibility>
+    </parser>
+    <transformer>
+        <target>docs</target>
+    </transformer>
+    <logging>
+        <level>warn</level>
+        <paths>
+            <default>{APP_ROOT}/data/log/{DATE}.log</default>
+            <errors>{APP_ROOT}/data/log/{DATE}.errors.log</errors>
+        </paths>
+    </logging>
+    <transformations>
+        <template name="responsive" />
+    </transformations>
+    <files>
+        <directory>fuel/app/classes</directory>
+        <directory>fuel/app/config</directory>
+        <directory>fuel/app/config/production</directory>
+        <directory>fuel/app/lang</directory>
+        <directory>fuel/app/migrations</directory>
+        <directory>fuel/app/modules</directory>
+        <directory>fuel/app/views</directory>
+        <ignore>fuel/app/cache/*</ignore>
+        <ignore>fuel/app/config/development/*</ignore>
+        <ignore>fuel/app/config/test/*</ignore>
+        <ignore>fuel/app/logs/*</ignore>
+        <ignore>fuel/app/migrations/*</ignore>
+        <ignore>fuel/app/tasks/*</ignore>
+        <ignore>fuel/app/tests/*</ignore>
+        <ignore>fuel/app/tmp/*</ignore>
+        <ignore>fuel/app/vendor/*</ignore>
+        <ignore>fuel/core/*</ignore>
+        <ignore>fuel/packages/*</ignore>
+        <ignore>public/*</ignore>
+    </files>
+</phpdoc>
